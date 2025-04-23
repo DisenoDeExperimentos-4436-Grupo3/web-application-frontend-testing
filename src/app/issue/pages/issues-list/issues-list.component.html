@@ -1,0 +1,59 @@
+<div class="container">
+  <h2>{{ 'issues' | translate }}</h2>
+
+  <button mat-raised-button class="custom-button" (click)="openAddIssueForm()">
+    {{ 'addIssue' | translate }}
+  </button>
+
+  <div class="filter-section">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'filterBySprint' | translate }}</mat-label>
+      <mat-select [(ngModel)]="selectedSprint" (selectionChange)="filterIssues()">
+        <mat-option [value]="null">{{ 'allSprints' | translate }}</mat-option>
+        <mat-option *ngFor="let sprint of sprints" [value]="sprint">{{ sprint }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>{{ 'filterByPriority' | translate }}</mat-label>
+      <mat-select [(ngModel)]="selectedPriority" (selectionChange)="filterIssues()">
+        <mat-option [value]="null">{{ 'allPriorities' | translate }}</mat-option>
+        <mat-option *ngFor="let priority of priorities" [value]="priority">{{ priority }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="issue-list">
+    <mat-card *ngFor="let issue of filteredIssues" class="issue-card">
+      <mat-card-title>{{ issue.title }}</mat-card-title>
+      <mat-card-subtitle>
+        {{ 'assignedTo' | translate }}: {{ issue.assignedTo }}
+      </mat-card-subtitle>
+      <mat-card-subtitle>
+        {{ 'createdBy' | translate }}: {{ issue.madeBy }}
+      </mat-card-subtitle>
+      <mat-card-content>
+        <p>{{ 'statusissue' | translate }}: {{ issue.status }}</p>
+        <p>{{ 'priorityissue' | translate }}: {{ issue.priority }}</p>
+        <p>{{ 'associatedSprint' | translate }}: {{ issue.sprintAssociate }}</p>
+        <p>{{ 'createdIn' | translate }}: {{ issue.createdIn }}</p>
+      </mat-card-content>
+      <mat-card-actions class="card-actions">
+        <button mat-raised-button class="view-more-button" (click)="openViewMore(issue)">
+          {{ 'viewMoreissue' | translate }}
+        </button>
+      </mat-card-actions>
+      <mat-card-actions class="card-actions">
+        <button mat-raised-button class="add-history-button" (click)="addHistoryEvent(issue)">
+          {{ 'addHistoryEvent' | translate }}
+        </button>
+        <button mat-raised-button class="edit-button" (click)="openEditIssueForm(issue)">
+          {{ 'editissue' | translate }}
+        </button>
+        <button mat-raised-button class="delete-button" (click)="deleteIssue(issue)">
+          {{ 'deleteissue' | translate }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

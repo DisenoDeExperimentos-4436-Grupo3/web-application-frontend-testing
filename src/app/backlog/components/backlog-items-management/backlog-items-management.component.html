@@ -1,0 +1,102 @@
+
+
+<div class="buttons-container">
+  <button class="select-item-button" (click)='showItem("userStories")'>User Stories</button>
+  <button class="select-item-button" (click)='showItem("epics")'>Epics</button>
+
+</div>
+
+<div *ngIf='backogItem=="userStories"'>
+
+  <div class="item-header">
+    <h6>{{ 'userStories' | translate }}</h6>
+    <button mat-raised-button class="item-create" (click)="openAddUserStoryForm()">Create</button>
+  </div>
+
+  <div class="us-section">
+  <mat-card *ngFor="let userStory of userStories" class="us-card">
+    <div class="us-container">
+      <div class="card-header">
+        <span>US{{ userStory.id }}</span>
+        <div class="options">
+          <button mat-raised-button (click)="openAddTaskForm(userStory.id)" class="edit-button" *ngIf="userStory.status!='DONE'"> <mat-icon>add</mat-icon> </button>
+          <button mat-raised-button (click)="openEditUserStoryForm(userStory)" class="edit-button" *ngIf="userStory.status!='DONE'"> <mat-icon>edit</mat-icon> </button>
+          <button (click)="onDeleteUserStory(userStory)" class="delete-button"><mat-icon>delete</mat-icon></button>
+        </div>
+      </div>
+      <span>{{ 'title' | translate }}: {{ userStory.title }}</span> <br>
+      <span>{{ 'description' | translate }}: {{ userStory.description }}</span> <br>
+      <span *ngIf='userStory.status=="TO_DO"' style="color: red">Status: To Do</span>
+      <span *ngIf='userStory.status=="IN_PROGRESS"' style="color: darkblue">Status: In Progress </span>
+      <span *ngIf='userStory.status=="DONE"' style="color: green">Status: Done </span>
+      <br>
+      <span>{{ 'effort' | translate }}: {{ userStory.effort }}</span><br>
+      <span>{{ 'epic' | translate }} {{ userStory.epicId }}</span>
+
+      <br>
+
+    </div>
+    <button mat-raised-button (click)="showtasks(userStory.id)" class="showmore"> . . . </button>
+    <br><br><br>
+    <div class="us-tasks-container"  *ngIf="showtasklist[userStory.id]">
+      <div *ngFor="let task of userStory.tasks" class="us-tasks">
+        <!--<span>{{task.taskId}}</span>-->
+        <span>{{task.title}}</span>
+        <!--<span>{{task.description}}</span>-->
+        <span>{{task.estimation}}</span>
+        <span *ngIf='task.status=="TO_DO"' style="color: red">To Do</span>
+        <span *ngIf='task.status=="IN_PROGRESS"' style="color: darkblue">In Progress </span>
+        <span *ngIf='task.status=="DONE"' style="color: green">Done </span>
+        <button mat-raised-button (click)="openEditTaskForm(userStory.id, task)" class="edit-button"> <mat-icon>info_outline</mat-icon> </button>
+        <button (click)="onDeleteTask(userStory.id, task)" class="delete-button"><mat-icon>close</mat-icon></button>
+      </div>
+    </div>
+
+  </mat-card>
+  </div>
+
+</div>
+
+
+<div *ngIf='backogItem=="epics"'>
+  <div class="item-header">
+    <h6>{{ 'epics' | translate }}</h6>
+    <button mat-raised-button (click)="openAddEpicForm()" class="item-create">{{ 'create' | translate }}</button>
+  </div>
+
+  <div class="us-section">
+    <mat-card *ngFor="let epic of epics" class="us-card">
+      <div class="us-container">
+        <div class="card-header">
+          <span>EP{{ epic.id }}</span> <br>
+          <div>
+            <button mat-raised-button (click)="openEditEpicForm(epic)" class="edit-button"> <mat-icon>edit</mat-icon> </button>
+            <button (click)="onDeleteEpic(epic)" class="delete-button"><mat-icon>delete</mat-icon></button>
+          </div>
+        </div>
+        <span>{{ 'title' | translate }}: {{ epic.title }}</span> <br>
+        <span>{{ 'description' | translate }}: {{ epic.description }}</span> <br>
+        <!--<span *ngIf='epic.status=="TO_DO"' style="color: red">Status: To Do</span>
+        <span *ngIf='epic.status=="IN_PROGRESS"' style="color: darkblue">Status: {{ epic.status }}</span>
+        <span *ngIf='epic.status=="DONE"' style="color: green">Status: {{ epic.status }}</span>-->
+        <br>
+      </div>
+      <button mat-raised-button (click)="showUserStories(epic.id)" class="showmore"> . . . </button>
+
+      <div class="us-tasks-container"  *ngIf="showUserStoriesList[epic.id]">
+        <div *ngFor="let userStory of userStories" >
+          <div *ngIf="userStory.epicId === epic.id" class="us-tasks">
+            <span>US{{userStory.id}}</span>
+            <span>{{userStory.title}}</span>
+            <span *ngIf='userStory.status=="TO_DO"' style="color: red">To Do</span>
+            <span *ngIf='userStory.status=="IN_PROGRESS"' style="color: darkblue">In Progress </span>
+            <span *ngIf='userStory.status=="DONE"' style="color: green">Done </span>
+            <button (click)="removeEpicFromUserStory(userStory)" class="delete-button"><mat-icon>close</mat-icon></button>
+          </div>
+        </div>
+      </div>
+
+
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div *ngIf="isOpen" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <input type="text" (input)="onTitleChange($event)" [value]="userStory.title" placeholder="Title" />
+    <textarea (input)="onDescriptionChange($event)" [value]="userStory.description" placeholder="Description"></textarea>
+    <input type="date" (change)="onStartDateChange($event)" [value]="userStory.startDate" />
+    <input type="date" (change)="onEndDateChange($event)" [value]="userStory.endDate" />
+    <input type="number" (input)="onEffortChange($event)" [value]="userStory.effort" />
+    <button (click)="save()">Update Story</button>
+  </div>
+</div>

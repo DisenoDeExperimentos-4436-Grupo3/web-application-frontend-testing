@@ -1,0 +1,36 @@
+<!-- Primer nombre -->
+<mat-form-field appearance="fill">
+  <mat-label>Full Name</mat-label>
+  <input matInput [(ngModel)]="newMember.fullName" name="fullName" required>
+</mat-form-field>
+
+<!-- Correo electrónico -->
+<mat-form-field appearance="fill">
+  <mat-label>Email</mat-label>
+  <input matInput [(ngModel)]="newMember.email" name="email" required type="email">
+</mat-form-field>
+
+<!-- Dirección -->
+<mat-form-field appearance="fill">
+  <mat-label>Street Address</mat-label>
+  <input matInput [(ngModel)]="newMember.streetAddress" name="streetAddress" required>
+</mat-form-field>
+
+<!-- Rol -->
+<mat-form-field appearance="fill">
+  <mat-label>Role</mat-label>
+  <input matInput [(ngModel)]="newMember.role" name="role" required>
+</mat-form-field>
+
+<!-- Botón de envío -->
+<div class="form-buttons">
+  <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="isLoading">
+    {{ newMember.id ? 'Update Member' : 'Add Member' }}
+  </button>
+  <button mat-button (click)="onCancel()" [disabled]="isLoading">Cancel</button>
+</div>
+
+<!-- Botón de eliminar -->
+<div *ngIf="newMember.id">
+  <button mat-raised-button color="warn" (click)="onDelete()" [disabled]="isLoading">Delete Member</button>
+</div>

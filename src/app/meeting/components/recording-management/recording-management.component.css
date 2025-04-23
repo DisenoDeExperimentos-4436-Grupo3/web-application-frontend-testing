@@ -1,0 +1,117 @@
+.card-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.edit-form-container {
+  margin-bottom: 20px;
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  background: #808080; /* Color de fondo gris */
+  border: 2px solid black; /* Borde negro */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 15px;
+  width: calc(45% - 20px); /* Ajustado para dos tarjetas por fila */
+  box-sizing: border-box;
+  color: white;
+  position: relative;
+}
+
+.card-header {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.card-body {
+  margin-bottom: 10px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+}
+
+.link-button {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.link-button:hover {
+  background-color: #333;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: calc(100% - 20px); /* Una tarjeta por fila en pantallas pequeñas */
+  }
+}
+
+.edit-button {
+  background-color: black; /* Color de fondo negro */
+  color: white; /* Color de texto blanco */
+  border-radius: 50%; /* Bordes redondeados (opcional) */
+  padding: 0; /* Elimina el padding para que el botón sea circular */
+  transition: background-color 0.3s; /* Transición suave para el cambio de color */
+}
+
+.edit-button:hover {
+  background-color: darkgray; /* Color de fondo al pasar el mouse */
+}
+
+.edit-button mat-icon {
+  color: white; /* Asegura que el icono también sea blanco */
+}
+.open-link-button {
+  background-color: black; /* Color de fondo negro */
+  color: white; /* Color de texto blanco */
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+.open-link-button:hover {
+  background-color: darkgray; /* Color de fondo al pasar el mouse */
+}
+
+.create-meeting-button {
+  background-color: black; /* Color de fondo negro */
+  color: white; /* Color de texto blanco */
+  font-size: 0.875rem; /* Tamaño de fuente más pequeño */
+  padding: 5px 10px; /* Espaciado interno */
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+.create-meeting-button:hover {
+  background-color: darkgray; /* Color de fondo al pasar el mouse */
+}
+
+.card-actions {
+  display: flex; /* Habilita el flexbox para organizar los elementos */
+  justify-content: space-between; /* Espacia los elementos a ambos lados */
+  align-items: center; /* Centra los elementos verticalmente */
+}
+
+.info-button-container {
+  margin-left: auto; /* Empuja el botón de información hacia la derecha */
+}
+

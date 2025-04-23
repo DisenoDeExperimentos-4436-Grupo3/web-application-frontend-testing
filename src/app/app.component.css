@@ -1,0 +1,75 @@
+.mat-spacer {
+  flex: 1 1 auto;
+}
+mat-sidenav {
+  width: 200px;
+  border-right: none;
+  padding: 16px 0;
+}
+.content {
+  height: calc(100svh - 98px);
+  border-radius: 10px;
+  padding: 16px;
+  max-width: 1520px;
+  margin: 0 auto;
+  font-size: 16px;
+  background: #fff;
+}
+mat-sidenav-container {
+  height: calc(100svh - 65px);
+}
+mat-toolbar {
+  background-color: black !important;
+}
+
+mat-icon {
+  color: white !important; /* Asegura que todos los íconos dentro del toolbar sean blancos */
+}
+
+a[mat-button] {
+  margin-left: 20px;
+  color: white !important; /* Botón "Project" en blanco */
+}
+
+app-language-switcher {
+  color: white !important; /* Asegura que el selector de idioma también esté en blanco */
+}
+
+button[mat-icon-button] {
+  color: white !important; /* Asegura que el ícono del menú (hamburguesa) sea blanco */
+}
+/* Asegurarse de que el texto en el sidenav sea blanco */
+.mat-list-item {
+  color: white; /* Texto blanco para las opciones del sidenav */
+}
+
+/* Efecto hover para las opciones */
+.mat-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Ligera variación al pasar el mouse */
+}
+
+/* Iconos dentro del sidenav */
+.mat-list-item mat-icon {
+  color: white; /* Aseguramos que los iconos sean blancos */
+}
+/* Asegurarse de que el texto en el sidenav sea blanco */
+.mat-list-item {
+  color: white; /* Texto blanco para las opciones del sidenav */
+}
+
+/* Efecto hover para las opciones */
+.mat-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Ligera variación al pasar el mouse */
+}
+
+/* Iconos dentro del sidenav */
+.mat-list-item mat-icon {
+  color: white; /* Aseguramos que los iconos sean blancos */
+}
+
+/* Bordes rectos para el sidenav */
+mat-sidenav {
+  border-radius: 0; /* Eliminar bordes curvados */
+}
+
+

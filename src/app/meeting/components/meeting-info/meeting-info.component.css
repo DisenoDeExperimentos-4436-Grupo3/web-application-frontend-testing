@@ -1,0 +1,51 @@
+/* Estilos para el botón "Copy Link" */
+.copy-link-button {
+  margin-left: 10px; /* Espaciado entre el enlace y el botón */
+  background-color: #1976d2; /* Color de fondo azul */
+  color: white; /* Texto blanco */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 8px 16px; /* Relleno para hacerlo más grande */
+  font-weight: bold; /* Texto en negrita */
+  transition: background-color 0.3s, transform 0.2s; /* Transición suave */
+}
+
+/* Efecto de hover para el botón "Copy Link" */
+.copy-link-button:hover {
+  background-color: #1565c0; /* Color más oscuro al pasar el ratón */
+  transform: scale(1.05); /* Escalado al pasar el ratón */
+}
+.copy-link-button, .edit-members-button {
+  margin-top: 10px; /* Espacio arriba de los botones */
+}
+
+.edit-members-button {
+   margin-left: auto; /* Empuja el botón de cerrar hacia la derecha */
+    background-color: #35c9b2; /* Color de fondo rojo */
+    color: white; /* Texto blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 8px 16px; /* Relleno para hacerlo más grande */
+    font-weight: bold; /* Texto en negrita */
+    transition: background-color 0.3s, transform 0.2s; /* Transición suave */
+}
+
+.edit-members-button:hover {
+  background-color: #303f9f; /* Color más oscuro al pasar el mouse */
+  transform: scale(1.05); /* Aumento al pasar el mouse */
+}
+
+/* Estilos para el botón "Close" */
+.close-button {
+  margin-left: auto; /* Empuja el botón de cerrar hacia la derecha */
+  background-color: #f44336; /* Color de fondo rojo */
+  color: white; /* Texto blanco */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 8px 16px; /* Relleno para hacerlo más grande */
+  font-weight: bold; /* Texto en negrita */
+  transition: background-color 0.3s, transform 0.2s; /* Transición suave */
+}
+
+/* Efecto de hover para el botón "Close" */
+.close-button:hover {
+  background-color: #d32f2f; /* Color más oscuro al pasar el ratón */
+  transform: scale(1.05); /* Escalado al pasar el ratón */
+}

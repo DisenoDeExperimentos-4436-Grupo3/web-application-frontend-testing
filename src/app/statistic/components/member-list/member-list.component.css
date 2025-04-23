@@ -1,0 +1,11 @@
+/* src/app/statistics/components/member-list/member-list.component.css */
+.member-list {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.member-list h2 {
+  margin-bottom: 1rem;
+}

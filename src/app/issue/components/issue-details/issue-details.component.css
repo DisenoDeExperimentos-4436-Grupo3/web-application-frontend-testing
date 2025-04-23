@@ -1,0 +1,64 @@
+h3 {
+  text-align: center; /* Centrar el título */
+  margin-top: 20px; /* Espaciado superior */
+  margin-bottom: 16px; /* Espaciado inferior */
+}
+
+.issue-card {
+  border: 1px solid #ccc; /* Borde elegante */
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 16px; /* Espaciado interno */
+  margin: 20px; /* Margen alrededor del card */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.issue-content {
+  padding: 10px; /* Espaciado interno adicional */
+}
+
+.issue-description,
+.issue-status,
+.issue-priority,
+.issue-assigned,
+.issue-sprint,
+.issue-created,
+.issue-resolution {
+  margin: 8px 0; /* Margen vertical entre elementos */
+}
+
+.issue-history-title {
+  margin-top: 16px; /* Espaciado adicional encima del título */
+}
+
+.issue-history-list {
+  list-style-type: none; /* Sin viñetas en la lista */
+  padding-left: 0; /* Sin espaciado a la izquierda */
+}
+
+.history-item {
+  border-bottom: 1px solid #eee; /* Separador entre items */
+  padding: 8px 0; /* Espaciado vertical */
+}
+
+.history-item:last-child {
+  border-bottom: none; /* Sin borde en el último item */
+}
+
+.scrollable-content {
+  max-height: 800px; /* Ajusta esta altura según sea necesario */
+  overflow-y: auto; /* Habilita el desplazamiento vertical */
+}
+
+.scrollable-container {
+  max-height: 80vh; /* Ajusta según sea necesario */
+  overflow-y: auto;
+  padding: 16px;
+  box-sizing: border-box;
+}
+.close-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  background: white;
+}

@@ -1,0 +1,32 @@
+.form-title {
+  text-align: center; /* Centrar el título */
+  font-size: 24px; /* Tamaño de fuente grande */
+  margin: 20px 0; /* Espaciado superior e inferior */
+}
+
+.issue-form {
+  max-width: 600px; /* Ancho máximo para el formulario */
+  margin: 0 auto; /* Centrar el formulario horizontalmente */
+  padding: 20px; /* Espaciado interno */
+  border: 1px solid #ccc; /* Borde suave */
+  border-radius: 8px; /* Bordes redondeados */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: #fff; /* Fondo blanco */
+}
+
+mat-form-field {
+  width: 100%; /* Ancho completo para los campos */
+  margin-bottom: 15px; /* Espaciado inferior entre campos */
+}
+
+mat-card-actions {
+  display: flex; /* Usar flexbox para el alineado de botones */
+  justify-content: space-between; /* Espacio entre botones */
+  margin-top: 20px; /* Espaciado superior para los botones */
+}
+.scrollable-container {
+  max-height: 80vh; /* Ajusta según sea necesario */
+  overflow-y: auto;
+  padding: 16px;
+  box-sizing: border-box;
+}

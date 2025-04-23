@@ -1,0 +1,41 @@
+canvas {
+  max-width: 600px; /* Adjusted width */
+  max-height: 400px; /* Adjusted height */
+  width: 100%; /* For responsive resizing */
+  height: auto; /* Maintains aspect ratio */
+}
+
+.download-button {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+.download-button:hover {
+  background-color: #45a049; /* Verde más oscuro al pasar el ratón */
+}
+
+.timeline-button {
+  background-color: #FBB560;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+.timeline-button:hover {
+  background-color: #D49A3A;
+}

@@ -1,0 +1,30 @@
+<h2 mat-dialog-title>Meeting Details</h2>
+<mat-dialog-content>
+  <p><strong>Meeting ID:</strong> {{ meeting.id }}</p>
+  <p><strong>Host:</strong> {{ meeting.host }}</p>
+
+  <div *ngIf="meeting.members && meeting.members.length > 0">
+    <p><strong>Members:</strong></p>
+    <ul>
+      <li *ngFor="let id of meeting.members">
+        {{ id }}
+      </li>
+    </ul>
+  </div>
+
+  <p>
+    <strong>Link:</strong>
+    <a href="{{ meeting.link }}" target="_blank">{{ meeting.link }}</a>
+    <button mat-raised-button color="primary" (click)="copyLink()" class="copy-link-button">Copy Link</button>
+  </p>
+
+  <p>
+    <strong>Access Code:</strong> {{ meeting.accessCode }}
+  </p>
+
+  <button mat-raised-button color="accent" (click)="openEditDialog()" class="edit-members-button">Edit Members</button>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="accent" (click)="onClose()" class="close-button">Close</button>
+</mat-dialog-actions>

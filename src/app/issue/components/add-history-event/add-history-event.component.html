@@ -1,0 +1,29 @@
+<div class="scrollable-container">
+<h2 class="form-title">{{ 'addHistoryEventTitle' | translate }}</h2>
+<form (ngSubmit)="onSubmit()" class="history-form">
+  <mat-form-field>
+    <mat-label>{{ 'date' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newHistory.createdDate" name="createdDate" readonly>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'user' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newHistory.madeBy" name="madeBy" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'eventName' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newHistory.eventName" name="eventName" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'description' | translate }}</mat-label>
+    <textarea matInput [(ngModel)]="newHistory.description" name="description" required></textarea>
+  </mat-form-field>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" type="submit">{{ 'add' | translate }}</button>
+    <button mat-raised-button color="warn" (click)="onCancel()" type="button">{{ 'cancel' | translate }}</button>
+  </mat-card-actions>
+</form>
+</div>

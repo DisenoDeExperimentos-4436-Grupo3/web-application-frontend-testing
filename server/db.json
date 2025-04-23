@@ -1,0 +1,732 @@
+{
+  "sprints": [
+    {
+      "id": 1,
+      "title": "Sprint 1",
+      "goal": "Implementación de la funcionalidad básica",
+      "startDate": "2024-10-01",
+      "endDate": "2024-10-15",
+      "status": "started"
+    },
+    {
+      "id": 2,
+      "title": "spritnt",
+      "goal": "desaff",
+      "status": "Closed",
+      "startDate": "2024-12-21",
+      "endDate": "2024-12-25"
+    },
+    {
+      "id": 3,
+      "title": "sdasd",
+      "goal": "asdasds",
+      "status": "Active",
+      "startDate": "1111-11-11",
+      "endDate": "2222-02-22"
+    }
+  ],
+  "userStories": [
+    {
+      "id": 1,
+      "title": "Como usuario, quiero registrarme en la aplicación",
+      "description": "Necesito un formulario de registro para crear una cuenta en la aplicación.",
+      "status": "to_do",
+      "epicId": 1,
+      "sprintBacklogId": null,
+      "effort": 5,
+      "tasks": [
+        {
+          "id": 1,
+          "title": "Diseñar formulario de registro",
+          "description": "Crear el diseño del formulario de registro.",
+          "status": "to_do",
+          "estimation": 4,
+          "userStoryId": 1
+        },
+        {
+          "id": 2,
+          "title": "Implementar lógica de registro",
+          "description": "Desarrollar la lógica del backend para el registro de usuarios.",
+          "status": "to_do",
+          "estimation": 6,
+          "userStoryId": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "asdasdasd",
+      "description": "Necesito un formulario de inicio de sesión para acceder a mi cuenta.",
+      "status": "in_progress",
+      "epicId": 1,
+      "sprintBacklogId": 2,
+      "effort": "3",
+      "tasks": [
+        {
+          "id": 3,
+          "title": "Diseñar formulario de inicio de sesión",
+          "description": "Crear el diseño del formulario de inicio de sesión.",
+          "status": "done",
+          "estimation": 3,
+          "userStoryId": 2
+        },
+        {
+          "id": 4,
+          "title": "Implementar lógica de inicio de sesión",
+          "description": "Desarrollar la lógica del backend para la autenticación de usuarios.",
+          "status": "in_progress",
+          "estimation": 5,
+          "userStoryId": 2
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "owoowwoo",
+      "description": "Necesito recibir notificaciones para eventos como cambios en mi cuenta o actualizaciones importantes.",
+      "status": "to_do",
+      "epicId": 2,
+      "sprintBacklogId": 9,
+      "effort": "3",
+      "tasks": [
+        {
+          "id": 7,
+          "title": "Diseñar sistema de notificaciones",
+          "description": "Crear el diseño del sistema de notificaciones para el usuario.",
+          "status": "to_do",
+          "estimation": 3,
+          "userStoryId": 4
+        },
+        {
+          "id": 8,
+          "title": "Implementar lógica de envío de notificaciones",
+          "description": "Desarrollar la lógica del backend para el envío de notificaciones.",
+          "status": "to_do",
+          "estimation": 5,
+          "userStoryId": 4
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Como usuario, quiero ver un historial de mis actividades",
+      "description": "Necesito poder revisar un historial de mis actividades y cambios realizados en mi cuenta.",
+      "status": "to_do",
+      "epicId": 3,
+      "sprintBacklogId": 9,
+      "effort": 5,
+      "tasks": [
+        {
+          "id": 11,
+          "title": "Diseñar página de historial de actividades",
+          "description": "Crear el diseño de la página que mostrará el historial de actividades.",
+          "status": "to_do",
+          "estimation": 4,
+          "userStoryId": 6
+        },
+        {
+          "id": 12,
+          "title": "Implementar lógica para el historial de actividades",
+          "description": "Desarrollar la lógica del backend para registrar y mostrar las actividades del usuario.",
+          "status": "to_do",
+          "estimation": 5,
+          "userStoryId": 6
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "user eso",
+      "description": "esoso",
+      "status": "to_do",
+      "epicId": 1,
+      "sprintBacklogId": 10,
+      "effort": "5",
+      "tasks": []
+    }
+  ],
+  "epics": [
+    {
+      "id": 1,
+      "title": "Registro e inicio de sesión",
+      "description": "Implementar todas las funcionalidades relacionadas con el registro e inicio de sesión de usuarios.",
+      "status": "in_progress"
+    },
+    {
+      "id": 2,
+      "title": "Integración de funcionalidades avanzadas",
+      "description": "Integrar funciones avanzadas como recuperación de contraseña y autenticación de dos factores.",
+      "status": "to_do"
+    },
+    {
+      "id": 3,
+      "title": "Mejoras de rendimiento",
+      "description": "Realizar optimizaciones en la aplicación para mejorar la velocidad y eficiencia.",
+      "status": "to_do"
+    }
+  ],
+  "issues": [
+    {
+      "id": 1,
+      "title": "Error en autenticación de usuarios",
+      "SprintAssociate": "1",
+      "description": "Los usuarios no pueden autenticarse. El servidor devuelve un error 500.",
+      "status": "Abierto",
+      "priority": "Alta",
+      "assignedTo": "Juan Pérez",
+      "madeBy": "Estefano Jaque",
+      "createdIn": "2024-10-12",
+      "resolutionDate": null,
+      "history": [
+        {
+          "id": 1,
+          "date": "2024-10-12",
+          "user": "Maria González",
+          "event": "Creación",
+          "description": "El issue fue creado por Maria González."
+        },
+        {
+          "id": 2,
+          "date": "2024-10-13",
+          "user": "Juan Pérez",
+          "event": "Asignación",
+          "description": "El issue fue asignado a Juan Pérez."
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Problema con el despliegue en producción",
+      "SprintAssociate": 2,
+      "description": "El despliegue en el ambiente de producción falla al cargar el frontend.",
+      "status": "En Progreso",
+      "priority": "Media",
+      "assignedTo": "Carla Ruiz",
+      "madeBy": "Estefano Jaque ",
+      "createdIn": "2024-10-10",
+      "resolutionDate": null,
+      "history": [
+        {
+          "id": 1,
+          "date": "2024-10-10",
+          "user": "Carlos López",
+          "event": "Creación",
+          "description": "El issue fue creado por Carlos López."
+        },
+        {
+          "id": 2,
+          "date": "2024-10-11",
+          "user": "Carla Ruiz",
+          "event": "Asignación",
+          "description": "El issue fue asignado a Carla Ruiz."
+        },
+        {
+          "id": 3,
+          "date": "2024-10-12",
+          "user": "Carla Ruiz",
+          "event": "Actualización",
+          "description": "Carla comenzó a trabajar en la corrección del despliegue."
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Fallo en el sistema de notificaciones",
+      "SprintAssociate": 1,
+      "description": "Las notificaciones no se envían a los usuarios correctamente.",
+      "status": "Abierto",
+      "priority": "Baja",
+      "assignedTo": "Carlos López",
+      "madeBy": "Estefano Jaque",
+      "createdIn": "2024-10-11",
+      "resolutionDate": null,
+      "history": [
+        {
+          "id": 1,
+          "date": "2024-10-11",
+          "user": "Carlos López",
+          "event": "Creación",
+          "description": "El issue fue creado por Carlos López."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "title": "Error al exportar reportes",
+      "SprintAssociate": 3,
+      "description": "Los reportes no se exportan en formato PDF.",
+      "status": "Resuelto",
+      "priority": "Alta",
+      "assignedTo": "Maria González",
+      "madeBy": "Juan Pérez",
+      "createdIn": "2024-09-29",
+      "resolutionDate": "2024-10-05",
+      "history": [
+        {
+          "id": 1,
+          "date": "2024-09-29",
+          "user": "Juan Pérez",
+          "event": "Creación",
+          "description": "El issue fue creado por Juan Pérez."
+        },
+        {
+          "id": 2,
+          "date": "2024-09-30",
+          "user": "Maria González",
+          "event": "Asignación",
+          "description": "El issue fue asignado a Maria González."
+        },
+        {
+          "id": 3,
+          "date": "2024-10-05",
+          "user": "Maria González",
+          "event": "Resolución",
+          "description": "El issue fue resuelto."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Fallo en la carga de imágenes",
+      "SprintAssociate": 2,
+      "description": "Las imágenes no se cargan correctamente en el panel de administración.",
+      "status": "Abierto",
+      "priority": "Media",
+      "assignedTo": "Ana Torres",
+      "madeBy": "Estefano Jaque",
+      "createdIn": "2024-10-15",
+      "resolutionDate": null,
+      "history": [
+        {
+          "id": 1,
+          "date": "2024-10-15",
+          "user": "Estefano Jaque",
+          "event": "Creación",
+          "description": "El issue fue creado por Estefano Jaque."
+        },
+        {
+          "id": 2,
+          "date": "2024-10-16",
+          "user": "Ana Torres",
+          "event": "Asignación",
+          "description": "El issue fue asignado a Ana Torres."
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Problema de rendimiento en la base de datos",
+      "SprintAssociate": 1,
+      "description": "Consultas lentas que afectan la experiencia del usuario.",
+      "status": "En Progreso",
+      "priority": "Alta",
+      "assignedTo": "Luis Martínez",
+      "madeBy": "Estefano Jaque",
+      "createdIn": "2024-10-14",
+      "resolutionDate": null,
+      "history": [
+        {
+          "id": 1,
+          "date": "2024-10-14",
+          "user": "Estefano Jaque",
+          "event": "Creación",
+          "description": "El issue fue creado por Estefano Jaque."
+        },
+        {
+          "id": 2,
+          "date": "2024-10-15",
+          "user": "Luis Martínez",
+          "event": "Asignación",
+          "description": "El issue fue asignado a Luis Martínez."
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Inconsistencias en la interfaz de usuario",
+      "SprintAssociate": 3,
+      "description": "Elementos de la UI no coinciden con el diseño aprobado.",
+      "status": "Abierto",
+      "priority": "Baja",
+      "assignedTo": "Sara López",
+      "madeBy": "Estefano Jaque",
+      "createdIn": "2024-10-18",
+      "resolutionDate": null,
+      "history": [
+        {
+          "id": 1,
+          "date": "2024-10-18",
+          "user": "Estefano Jaque",
+          "event": "Creación",
+          "description": "El issue fue creado por Estefano Jaque."
+        },
+        {
+          "id": 2,
+          "date": "2024-10-19",
+          "user": "Sara López",
+          "event": "Asignación",
+          "description": "El issue fue asignado a Sara López."
+        }
+      ]
+    }
+  ],
+  "members": [
+    {
+      "id": 1,
+      "profile": {
+        "firstName": "Michael",
+        "lastName": "Smith",
+        "address": "456 Oak St",
+        "number": "2B",
+        "city": "Springfield",
+        "postalCode": "98765",
+        "email": "michael.smith@example.com",
+        "country": "USA",
+        "phone": "987-654-3210",
+        "avatar": "https://b2472105.smushcdn.com/2472105/wp-content/uploads/2022/11/Fotografia-de-Retrato-19-1170x1170.jpg?lossy=1&strip=1&webp=1"
+      },
+      "role": {
+        "name": "Developer Team",
+        "description": "A cross-functional group that collaborates to deliver product increments, self-organizing and responsible for quality and estimates."
+      },
+      "availability": {
+        "startSchedule": "09:00",
+        "finalSchedule": "17:00",
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ]
+      },
+      "status": "Active"
+    },
+    {
+      "id": 2,
+      "profile": {
+        "firstName": "Sarah",
+        "lastName": "Johnson",
+        "address": "123 Maple Ave",
+        "number": "3A",
+        "city": "Shelbyville",
+        "postalCode": "12345",
+        "email": "sarah.johnson@example.com",
+        "country": "USA",
+        "phone": "123-456-7890",
+        "avatar": "https://example.com/avatar2.jpg"
+      },
+      "role": {
+        "name": "Project Manager",
+        "description": "Responsible for planning, executing, and closing projects."
+      },
+      "availability": {
+        "startSchedule": "08:00",
+        "finalSchedule": "16:00",
+        "days": [
+          "Monday",
+          "Wednesday",
+          "Friday"
+        ]
+      },
+      "status": "Active"
+    },
+    {
+      "id": 3,
+      "profile": {
+        "firstName": "David",
+        "lastName": "Williams",
+        "address": "789 Pine St",
+        "number": "1C",
+        "city": "Capitol City",
+        "postalCode": "67890",
+        "email": "david.williams@example.com",
+        "country": "USA",
+        "phone": "234-567-8901",
+        "avatar": "https://example.com/avatar3.jpg"
+      },
+      "role": {
+        "name": "UI/UX Designer",
+        "description": "Focuses on the user experience and visual design."
+      },
+      "availability": {
+        "startSchedule": "10:00",
+        "finalSchedule": "18:00",
+        "days": [
+          "Tuesday",
+          "Thursday"
+        ]
+      },
+      "status": "Active"
+    },
+    {
+      "id": 4,
+      "profile": {
+        "firstName": "Emily",
+        "lastName": "Davis",
+        "address": "321 Birch Rd",
+        "number": "5D",
+        "city": "Metropolis",
+        "postalCode": "54321",
+        "email": "emily.davis@example.com",
+        "country": "USA",
+        "phone": "345-678-9012",
+        "avatar": "https://example.com/avatar4.jpg"
+      },
+      "role": {
+        "name": "Quality Assurance",
+        "description": "Ensures the product meets quality standards before release."
+      },
+      "availability": {
+        "startSchedule": "09:00",
+        "finalSchedule": "17:00",
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ]
+      },
+      "status": "Active"
+    },
+    {
+      "id": 5,
+      "profile": {
+        "firstName": "James",
+        "lastName": "Brown",
+        "address": "654 Cedar Blvd",
+        "number": "4E",
+        "city": "Star City",
+        "postalCode": "98765",
+        "email": "james.brown@example.com",
+        "country": "USA",
+        "phone": "456-789-0123",
+        "avatar": "https://example.com/avatar5.jpg"
+      },
+      "role": {
+        "name": "Backend Developer",
+        "description": "Works on server-side logic and database management."
+      },
+      "availability": {
+        "startSchedule": "09:00",
+        "finalSchedule": "17:00",
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Thursday"
+        ]
+      },
+      "status": "Active"
+    },
+    {
+      "id": 6,
+      "profile": {
+        "firstName": "Lisa",
+        "lastName": "Miller",
+        "address": "987 Elm St",
+        "number": "6F",
+        "city": "Oceanview",
+        "postalCode": "87654",
+        "email": "lisa.miller@example.com",
+        "country": "USA",
+        "phone": "567-890-1234",
+        "avatar": "https://example.com/avatar6.jpg"
+      },
+      "role": {
+        "name": "DevOps Engineer",
+        "description": "Responsible for managing infrastructure and deployment."
+      },
+      "availability": {
+        "startSchedule": "11:00",
+        "finalSchedule": "19:00",
+        "days": [
+          "Monday",
+          "Wednesday",
+          "Friday"
+        ]
+      },
+      "status": "Active"
+    },
+    {
+      "id": 7,
+      "profile": {
+        "firstName": "Chris",
+        "lastName": "Wilson",
+        "address": "147 Willow Ct",
+        "number": "7G",
+        "city": "Hometown",
+        "postalCode": "13579",
+        "email": "chris.wilson@example.com",
+        "country": "USA",
+        "phone": "678-901-2345",
+        "avatar": "https://example.com/avatar7.jpg"
+      },
+      "role": {
+        "name": "Business Analyst",
+        "description": "Analyzes business needs and provides data-driven insights."
+      },
+      "availability": {
+        "startSchedule": "09:00",
+        "finalSchedule": "17:00",
+        "days": [
+          "Tuesday",
+          "Thursday"
+        ]
+      },
+      "status": "Active"
+    },
+    {
+      "id": 8,
+      "profile": {
+        "firstName": "Karen",
+        "lastName": "Taylor",
+        "address": "258 Ash St",
+        "number": "8H",
+        "city": "Fictional City",
+        "postalCode": "24680",
+        "email": "karen.taylor@example.com",
+        "country": "USA",
+        "phone": "789-012-3456",
+        "avatar": "https://example.com/avatar8.jpg"
+      },
+      "role": {
+        "name": "System Administrator",
+        "description": "Manages and maintains IT systems."
+      },
+      "availability": {
+        "startSchedule": "08:00",
+        "finalSchedule": "16:00",
+        "days": [
+          "Monday",
+          "Wednesday",
+          "Friday"
+        ]
+      },
+      "status": "Active"
+    }
+  ],
+  "meetings": [
+    {
+      "id": 1,
+      "title": "Sprint Planning Meeting",
+      "date": "2008-10-12T05:00:00.000Z",
+      "time": "7:14 AM",
+      "link": "https://meet.google.com/landing",
+      "recording": {
+        "recordingLink": "https://meet.google.com/recordings/sprint-planning",
+        "duration": "1h 30m",
+        "publicAccess": true
+      },
+      "host": 2,
+      "members": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "access_code": "123456"
+    },
+    {
+      "id": 2,
+      "title": "Retrospective Meeting",
+      "date": "2024-10-15",
+      "time": "2:00 PM",
+      "link": "https://meet.google.com/landing",
+      "recording": {
+        "recordingLink": "https://meet.google.com/recordings/retrospective",
+        "duration": "45m",
+        "publicAccess": true
+      },
+      "host": 1,
+      "members": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "access_code": "654321"
+    },
+    {
+      "id": 4,
+      "title": "Sprint Review",
+      "date": "2024-10-22",
+      "time": "3:00 PM",
+      "link": "https://meet.google.com/landing",
+      "recording": {
+        "recordingLink": "https://meet.google.com/recordings/sprint-review",
+        "duration": "1h",
+        "publicAccess": true
+      },
+      "host": 3,
+      "members": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "access_code": "345678"
+    },
+    {
+      "date": "+020043-10-12T05:00:00.000Z",
+      "time": "7:14 AM",
+      "title": "MAJOOOO",
+      "members": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "access_code": "OS8E2T",
+      "host": 1,
+      "link": "https://meet.google.com/9dokxl",
+      "recording": {
+        "recordingLink": "https://meet.google.com/recordings/majoooo",
+        "duration": "1h 17m",
+        "publicAccess": false
+      },
+      "id": 5
+    },
+    {
+      "date": "2004-10-12T05:00:00.000Z",
+      "time": "12:00 AM",
+      "title": "dddddd",
+      "members": [
+        1
+      ],
+      "access_code": "3FHMIX",
+      "host": 1,
+      "link": "https://meet.google.com/xv574x",
+      "recording": {
+        "recordingLink": "https://meet.google.com/recordings/dddddd",
+        "duration": "1h 51m",
+        "publicAccess": true
+      },
+      "id": 6
+    },
+    {
+      "date": "2004-10-12T05:00:00.000Z",
+      "time": "12:00 AM",
+      "title": "sauuuuuu",
+      "members": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "access_code": "A68GWP",
+      "host": 8,
+      "link": "https://meet.google.com/nhv38k",
+      "recording": {
+        "recordingLink": "https://meet.google.com/recordings/sauuuuuu",
+        "duration": "1h 36m",
+        "publicAccess": false
+      },
+      "id": 7
+    }
+  ]
+}

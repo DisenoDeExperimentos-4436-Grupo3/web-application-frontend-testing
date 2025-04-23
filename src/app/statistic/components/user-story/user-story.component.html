@@ -1,0 +1,28 @@
+<div class="user-story" *ngIf="story"> <!-- Asegúrate de que 'story' no sea nulo -->
+  <div>
+    <label for="startDate">Start Date:</label>
+    <input
+      type="date"
+      id="startDate"
+      [value]="story.startDate ? (story.startDate | date:'yyyy-MM-dd') : ''"
+      (change)="updateDates($event.target.value, story.endDate ? story.endDate.toISOString() : '')" />
+  </div>
+
+  <div>
+    <label for="endDate">End Date:</label>
+    <input
+      type="date"
+      id="endDate"
+      [value]="story.endDate ? (story.endDate | date:'yyyy-MM-dd') : ''"
+      (change)="updateDates(story.startDate ? story.startDate.toISOString() : '', $event.target.value)" />
+  </div>
+
+  <div>
+    <label for="effort">Effort:</label>
+    <input
+      type="number"
+      id="effort"
+      [value]="story.effort"
+      (change)="updateEffort(parseFloat(getValue($event)))" />
+  </div>
+</div>

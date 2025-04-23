@@ -1,0 +1,83 @@
+#product-backlog-card, #sprint-backlog-card, #sprint-card{
+  background-color: lightgray;
+  padding: 1rem;
+  max-width: 90%;
+  margin: auto;
+}
+
+.us-card{
+  background-color: white;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 15px;
+}
+
+.us-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+/*sprint backlog*/
+.sprint-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sprint-backlog-form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: auto;
+}
+
+.sprint-button{
+  border-radius: 8px;
+  background-color: black;
+  border: none;
+  color: white;
+  height: 2rem;
+  width: 6rem;
+}
+.sprint-button:hover{
+  background-color: #212121;
+  cursor: pointer;
+}
+
+.add-item{
+  background-color: transparent;
+  border: none;
+  border-radius: 100%;
+  width: 2.4rem;
+  height:2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+  color: #6e6e6e;
+}
+
+.add-item:hover{
+  cursor: pointer;
+  background-color: #ededed;
+  rotate: 90deg;
+}
+
+.add-item:active{
+  cursor: pointer;
+  background-color: #cccccc;
+}
+
+.delete-button{
+  border: none;
+  color: red;
+  background-color: transparent;
+}
+.delete-button:hover{
+  color: brown;
+  cursor: pointer;
+}

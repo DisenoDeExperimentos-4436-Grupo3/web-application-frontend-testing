@@ -1,0 +1,22 @@
+<div class="statistics-container">
+  <h2>{{ 'projectTitle' | translate }}</h2>
+
+  <div class="main-container"> <!-- Nuevo contenedor para organizar el gráfico y los miembros -->
+    <div class="chart-container">
+
+      <app-statistics-chart></app-statistics-chart> <!-- Este es el componente del gráfico -->
+    </div>
+
+    <div class="members-container" *ngIf="members && members.length > 0">
+      <h3>{{ 'membersTitle' | translate }}</h3>
+      <ul>
+        <li *ngFor="let member of members" class="member-item">
+          <img src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png" alt="Icon" class="member-icon" />
+          <span>{{ member.personName.fullName }}</span>
+
+          <span class="member-role">{{ member.role }}</span> <!-- Mostrar el rol -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

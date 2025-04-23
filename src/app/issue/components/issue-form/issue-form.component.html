@@ -1,0 +1,56 @@
+<div class="scrollable-container">
+<h2 class="form-title">{{ newIssue.id ? 'Editar Issue' : 'Agregar nuevo Issue' }}</h2>
+<form (ngSubmit)="onSubmit()" class="issue-form">
+  <!-- Campos del Issue -->
+
+  <mat-form-field>
+    <mat-label>{{ 'associatedSprint' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newIssue.sprintAssociate" name="sprintAssociate" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'createdBy' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newIssue.madeBy" name="madeBy" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'title' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newIssue.title" name="title" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'description' | translate }}</mat-label>
+    <textarea matInput [(ngModel)]="newIssue.description" name="description" required></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'statusissue' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newIssue.status" name="status" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'priorityissue' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newIssue.priority" name="priority" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'assignedTo' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newIssue.assignedTo" name="assignedTo" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'createdIn' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newIssue.createdIn" name="createdIn" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{ 'estimatedResolutionDate' | translate }}</mat-label>
+    <input matInput [(ngModel)]="newIssue.resolutionDate" name="resolutionDate" required>
+  </mat-form-field>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" type="submit">{{ newIssue.id ? 'Guardar cambios' : 'Agregar' }}</button>
+    <button mat-raised-button color="warn" (click)="onCancel()" type="button">{{ 'cancel' | translate }}</button>
+  </mat-card-actions>
+</form>
+</div>

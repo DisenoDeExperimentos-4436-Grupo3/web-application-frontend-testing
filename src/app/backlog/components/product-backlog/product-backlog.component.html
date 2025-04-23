@@ -1,0 +1,73 @@
+<mat-card id="product-backlog-card">
+  <h6>Product Backlog</h6>
+  <mat-card *ngFor="let userStory of productBacklog" class="us-card">
+    <div class="us-container">
+      <span>US{{ userStory.id }}</span>
+      <span>{{ userStory.title }}</span>
+      <span>{{ userStory.status }}</span>
+      <button *ngIf="!isSprintActive()" class="add-item" (click)="onAddUserStory(userStory)"><mat-icon>add</mat-icon></button>
+    </div>
+  </mat-card>
+</mat-card>
+
+<br><br><br>
+
+<!--Parte sprint actual-->
+<div *ngFor="let sprint of sprints" >
+  <mat-card *ngIf="sprint.status==='STARTED'" id="sprint-card">
+    <div class="sprint-header">
+      <h6>Sprint #{{sprint.id}}</h6> <br>
+      <h6>{{sprint.title}}</h6>
+      <h6>{{sprint.goal}}</h6>
+      <h6>{{ sprint.endDate | date:'dd/MM/yyyy' }}</h6>
+      <button class="sprint-button" mat-raised-button (click)="closeSprint(sprint)">{{ 'close' | translate }}</button>
+    </div>
+    <div *ngFor="let userStory of usersprints">
+      <mat-card *ngIf="userStory.sprintId===sprint.id" class="us-card">
+        <div class="us-container">
+          <span>US{{ userStory.id }}</span>
+          <span>{{ userStory.title }}</span>
+          <span>{{ userStory.description }}</span>
+        </div>
+      </mat-card>
+    </div>
+  </mat-card>
+</div>
+
+<br><br><br>
+
+<!--parte sprint backlog-->
+
+<mat-card id="sprint-backlog-card" *ngIf="!isSprintActive()">
+  <div class="sprint-header">
+    <h6>Sprint Backlog</h6>
+    <form class="sprint-backlog-form" (ngSubmit)="createSprint()">
+      <mat-form-field>
+        <mat-label>{{ 'name' | translate }}</mat-label>
+        <input matInput [(ngModel)]="newSprint.title" name="name" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>{{ 'description' | translate }}</mat-label>
+        <input matInput [(ngModel)]="newSprint.goal" name="description" required>
+      </mat-form-field>
+      <!--<mat-form-field>
+        <mat-label>Start Date</mat-label>
+        <input matInput [(ngModel)]="newSprint.startDate" name="startDate" type="date" required>
+      </mat-form-field>-->
+      <mat-form-field>
+        <mat-label>{{ 'endDate' | translate }}</mat-label>
+        <input matInput [(ngModel)]="newSprint.endDate" name="endDate" type="date" required>
+      </mat-form-field>
+      <button class="sprint-button" mat-raised-button type="submit">{{ 'create' | translate }}</button>
+    </form>
+  </div>
+  <mat-card *ngFor="let userStory of sprintBacklog" class="us-card">
+    <div class="us-container">
+      <span>US{{ userStory.id }}</span>
+      <span>{{ userStory.title }}</span>
+      <span>{{ userStory.status }}</span>
+      <button class="delete-button" (click)="onDeleteUserStory(userStory)"><mat-icon>delete</mat-icon></button>
+    </div>
+  </mat-card>
+  <!--<button class="add-item">+ Add an item</button>-->
+</mat-card>

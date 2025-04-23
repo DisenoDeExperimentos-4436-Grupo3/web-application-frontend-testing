@@ -1,0 +1,38 @@
+<div class="form-list">
+  <h6 class="form-title">{{ newUserStory.id ? 'Editar Historia de Usuario' : 'Agregar nueva Historia de Usuario' }}</h6>
+  <form (ngSubmit)="onSubmit()" class="user-story-form">
+    <!-- Campos de la Historia de Usuario -->
+
+    <mat-form-field>
+      <mat-label>{{ 'title' | translate }}</mat-label>
+      <input matInput [(ngModel)]="newUserStory.title" name="title" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>{{ 'description' | translate }}</mat-label>
+      <textarea matInput [(ngModel)]="newUserStory.description" name="description" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Epic Id</mat-label>
+      <input matInput type="number" [(ngModel)]="newUserStory.epicId" name="epicId" required>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Story Points</mat-label>
+      <mat-select [(ngModel)]="newUserStory.effort" name="effort" required>
+        <mat-option value=1>1</mat-option>
+        <mat-option value=2>2</mat-option>
+        <mat-option value=3>3</mat-option>
+        <mat-option value=5>5</mat-option>
+        <mat-option value=8>8</mat-option>
+        <mat-option value=13>13</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button class="action-button-cancel" mat-raised-button color="warn" (click)="onCancel()" type="button">{{ 'cancel' | translate }}</button>
+      <button class="action-button-accept" mat-raised-button color="primary" type="submit">{{ newUserStory.id ? 'Save' : 'Add' }}</button>
+    </mat-card-actions>
+  </form>
+</div>

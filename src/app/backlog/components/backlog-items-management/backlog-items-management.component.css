@@ -1,0 +1,107 @@
+.us-card{
+  background-color: white;
+  border-radius: 10px;
+  margin: 15px;
+  padding: 15px;
+  width: 20rem;
+}
+
+
+.us-section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.item-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-create{
+  width: 5rem;
+  height: 2rem;
+  background-color: black;
+  color: white;
+  border-radius: 8px;
+  border: none;
+}
+
+.item-create:hover{
+  background-color: #212121;
+  color: white;
+  cursor: pointer;
+}
+
+
+.edit-button{
+  border: none;
+  color: blue;
+  background-color: transparent;
+}
+.edit-button:hover{
+  color: navy;
+  cursor: pointer;
+}
+
+.delete-button{
+  border: none;
+  color: red;
+  background-color: transparent;
+}
+
+.delete-button:hover{
+  color: brown;
+  cursor: pointer;
+}
+
+.select-item-button {
+  background-color: transparent;
+  color: black;
+  border: 2px solid black;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 90px;
+  height: 35px;
+  transition: 0.3s;
+  margin: 1rem;
+}
+
+.select-item-button:hover {
+  background-color: black;
+  color: #fff;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+
+.us-tasks-container{
+  padding-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.us-tasks{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+
+.showmore{
+  background: none;
+  border: none;
+  align-self: center;
+}
+.showmore:hover{
+  cursor: pointer;
+}

@@ -1,0 +1,55 @@
+.statistics-container {
+  display: flex; /* Usar flexbox para organizar el contenedor principal */
+  flex-direction: column; /* Dirección de columna para el contenedor */
+  margin: 20px; /* Margen alrededor del contenedor */
+}
+
+.main-container {
+  display: flex; /* Usar flexbox para organizar el gráfico y la lista de miembros en línea */
+  margin-top: 10px; /* Espacio encima de la línea de gráficos y miembros */
+}
+
+.chart-container {
+  flex: 1; /* Ocupa todo el espacio restante para el gráfico */
+  margin-right: 20px; /* Espacio a la derecha del gráfico */
+}
+
+.members-container {
+  flex: 0 0 250px; /* Ancho fijo para la lista de miembros */
+  padding: 10px; /* Espaciado interno */
+  border-left: 1px solid #ccc; /* Línea separadora a la izquierda */
+  height: fit-content; /* Ajustar a la altura del contenido */
+  display: flex; /* Usar flexbox para organizar la lista */
+  flex-direction: column; /* Dirección de columna para la lista de miembros */
+}
+
+.members-container h3 {
+  margin: 0; /* Sin margen para el título */
+}
+
+ul {
+  list-style: none; /* Sin viñetas */
+  padding: 0; /* Sin padding */
+  margin: 0; /* Sin margen */
+}
+
+.member-item {
+  display: flex; /* Usar flexbox para alinear el contenido */
+  align-items: center; /* Centrar verticalmente el contenido */
+  padding: 10px; /* Espaciado interno */
+  border-bottom: 1px solid #ccc; /* Línea separadora */
+}
+
+.member-item:last-child {
+  border-bottom: none; /* Sin línea para el último elemento */
+}
+
+.member-status, .member-role {
+  margin-left: 10px; /* Espacio a la izquierda de los textos */
+}
+
+.member-icon {
+  width: 24px; /* Ancho del ícono */
+  height: 24px; /* Altura del ícono */
+  margin-right: 10px; /* Espacio a la derecha del ícono */
+}

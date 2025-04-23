@@ -1,0 +1,36 @@
+<form (submit)="onSubmit()" #resourceForm="ngForm" class="form-row">
+  <mat-dialog-content>
+    <button mat-icon-button mat-dialog-close class="dialog-button-close">
+      <mat-icon>close</mat-icon>
+    </button>
+    <h4 mat-dialog-title>{{ editMode ? 'Edit Recording' : 'New Recording' }}</h4>
+
+    <!-- Campo para ID (solo si es necesario) -->
+    <mat-form-field>
+      <input matInput placeholder="ID" name="ID" required [(ngModel)]="meeting.title" [disabled]="editMode">
+    </mat-form-field>
+
+    <!-- Campo para el enlace de la grabación -->
+    <mat-form-field>
+      <input matInput placeholder="Recording Link" name="link" required [(ngModel)]="meeting.recording.recordingLink">
+    </mat-form-field>
+
+    <!-- Selección de acceso público o privado -->
+    <mat-form-field>
+      <mat-label>{{ 'accessLabel' | translate }}</mat-label>
+      <mat-select [(ngModel)]="meeting.recording.publicAccess" name="access">
+        <mat-option [value]="true">{{ 'accessPublicOption' | translate }}</mat-option>
+        <mat-option [value]="false">{{ 'accessPrivateOption' | translate }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary" type="submit">
+      <mat-icon>{{ editMode ? 'update' : 'save' }}</mat-icon> {{ editMode ? 'Update' : 'Add' }}
+    </button>
+    <button mat-raised-button color="warn" mat-dialog-close>
+      <mat-icon>cancel</mat-icon> Cancel
+    </button>
+  </mat-dialog-actions>
+</form>

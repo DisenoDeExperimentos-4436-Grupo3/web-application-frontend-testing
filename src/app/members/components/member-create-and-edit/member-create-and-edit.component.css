@@ -1,0 +1,128 @@
+/* Estilo global del componente */
+:host {
+  display: block;
+  margin: 20px;
+  padding: 25px;
+  background-color: #F3F4F6; /* Color de fondo suave */
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+:host:hover {
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo del mat-card */
+mat-card {
+  background-color: #FFFFFF;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+mat-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo para el contenido del mat-card */
+mat-card-content {
+  padding: 20px 0;
+}
+
+/* Títulos dentro del mat-card */
+mat-card-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4E342E; /* Marrón oscuro profundo */
+  margin-bottom: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* Estilo del formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Estilo para los campos de formulario */
+mat-form-field {
+  width: 100%;
+}
+
+/* Estilo para los botones */
+button {
+  background-color: #4E342E; /* Marrón oscuro */
+  color: #FFFFFF;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+button:hover {
+  background-color: #7B5E57; /* Marrón claro */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo del botón de cancelación */
+button.cancel-btn {
+  background-color: #EF5350; /* Rojo oscuro */
+  color: #FFFFFF;
+}
+
+button.cancel-btn:hover {
+  background-color: #FF8A80; /* Rojo claro */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilo de los mensajes de error */
+.error-message {
+  color: #D32F2F;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 5px;
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 80% { transform: translateX(-2px); }
+  40%, 60% { transform: translateX(2px); }
+}
+
+/* Loader */
+.is-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.is-loading::after {
+  content: 'Loading...';
+  font-size: 1rem;
+  color: #4E342E;
+  font-weight: 500;
+  animation: blink 1s infinite;
+}
+
+/* Efecto de parpadeo para el loader */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}

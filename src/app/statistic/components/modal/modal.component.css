@@ -1,0 +1,76 @@
+.modal {
+  display: block; /* Muestra el modal cuando isModalOpen es true */
+  position: fixed; /* Mantiene el modal en la pantalla */
+  z-index: 1000; /* Asegúrate de que el modal esté por encima de otros elementos */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  overflow: auto; /* Habilita el desplazamiento si es necesario */
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo negro con más opacidad */
+  transition: opacity 0.3s; /* Transición suave */
+}
+
+.modal-content {
+  background-color: #fff; /* Color de fondo blanco para el contenido */
+  margin: 10% auto; /* 10% desde la parte superior y centrado */
+  padding: 30px; /* Aumenta el espaciado interno */
+  border-radius: 12px; /* Bordes redondeados más pronunciados */
+  width: 90%; /* Ancho más grande para el modal */
+  max-width: 400px; /* Ancho máximo del modal */
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+  display: flex; /* Utiliza flexbox para centrar los elementos */
+  flex-direction: column; /* Organiza los elementos en columna */
+  align-items: center; /* Centra los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos verticalmente */
+  animation: fadeIn 0.4s; /* Añade animación al abrir */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Comienza invisible */
+  }
+  to {
+    opacity: 1; /* Termina visible */
+  }
+}
+
+.close {
+  color: #ff0000; /* Color rojo para el icono de cerrar */
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+}
+
+.close:hover,
+.close:focus {
+  color: #c00; /* Color al pasar el mouse */
+  text-decoration: none;
+}
+
+input[type="date"],
+input[type="number"] {
+  margin: 10px 0; /* Espacio entre los inputs */
+  padding: 10px; /* Espaciado interno para los inputs */
+  border: 1px solid #ccc; /* Borde del input */
+  border-radius: 5px; /* Bordes redondeados para los inputs */
+  width: 90%; /* Ancho del input */
+  font-size: 16px; /* Tamaño de fuente más grande */
+}
+
+button {
+  background-color: #4CAF50; /* Color de fondo del botón */
+  color: white; /* Color del texto del botón */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados para el botón */
+  padding: 12px 20px; /* Espaciado interno del botón */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  margin-top: 15px; /* Espacio entre el botón y el input anterior */
+  font-size: 16px; /* Tamaño de fuente más grande */
+  transition: background-color 0.3s; /* Transición suave */
+}
+
+button:hover {
+  background-color: #45a049; /* Color de fondo al pasar el mouse */
+}

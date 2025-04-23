@@ -1,0 +1,25 @@
+.backlog-page-container{
+  padding: 1rem;
+}
+
+.page-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+#items-button{
+  width: 5rem;
+  height: 2rem;
+  border: none;
+  background-color: darkorange;
+  border-radius: 8px;
+  color: black;
+}
+
+#items-button:hover{
+  background-color: orange;
+  cursor: pointer;
+}

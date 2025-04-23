@@ -1,0 +1,46 @@
+<form (submit)="onSubmit()" #resourceForm='ngForm' class="form-row">
+  <mat-dialog-content>
+    <button mat-icon-button mat-dialog-close class="dialog-button-close">
+      <mat-icon>close</mat-icon>
+    </button>
+    <h4 mat-dialog-title>{{ editMode ? 'Editar Reunión' : 'Nueva Reunión' }}</h4>
+
+    <mat-form-field>
+      <input matInput placeholder="ID" name="ID" required [(ngModel)]="meeting.id" [disabled]="true">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Fecha</mat-label>
+      <input matInput placeholder="YYYY-MM-DD" name="DATE" required [(ngModel)]="meeting.dateStr" pattern="\d{4}-\d{2}-\d{2}" title="Formato: YYYY-MM-DD">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Seleccione la Hora</mat-label>
+      <input matInput type="text" name="TIME" required [(ngModel)]="meeting.timeStr" placeholder="HH:mm">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Link" name="link" required [(ngModel)]="meeting.link">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="TÍTULO"
+        name="TITLE"
+        required
+        [(ngModel)]="meeting.title"
+        [disabled]="editMode"
+      >
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="primary">
+      <mat-icon>{{ editMode ? 'update' : 'save' }}</mat-icon> {{ editMode ? 'Actualizar' : 'Agregar' }}
+    </button>
+    <button mat-raised-button color="warn" mat-dialog-close>
+      <mat-icon>cancel</mat-icon> Cancelar
+    </button>
+  </mat-dialog-actions>
+</form>

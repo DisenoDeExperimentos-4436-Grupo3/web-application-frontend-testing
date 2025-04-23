@@ -1,0 +1,27 @@
+/* Estilo general para el grupo de botones */
+.language-toggle {
+  background-color: white; /* Fondo blanco por defecto */
+  color: black; /* Texto negro por defecto */
+  border-color: white; /* Borde blanco */
+  transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+}
+
+/* Cuando el botón está seleccionado */
+.language-toggle.mat-button-toggle-checked {
+  background-color: black; /* Fondo negro cuando está seleccionado */
+  color: white; /* Texto blanco cuando está seleccionado */
+  border-color: white;
+}
+
+/* Efecto hover para botones no seleccionados */
+.language-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.9); /* Blanco más suave en hover */
+  color: black; /* Mantén el texto negro en hover */
+  border-color: white;
+}
+
+/* Hover cuando el botón está seleccionado */
+.language-toggle.mat-button-toggle-checked:hover {
+  background-color: black; /* Mantén el fondo negro cuando está seleccionado */
+  color: white; /* Texto blanco */
+}

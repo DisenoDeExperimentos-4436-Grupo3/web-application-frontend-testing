@@ -1,0 +1,83 @@
+.container {
+  padding: 10px;
+}
+
+.filter-section {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.issue-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.issue-card {
+  flex: 0 0 calc(33.33% - 20px);
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.custom-button {
+  background-color: #00bcd4;
+  color: white;
+  border: 2px solid #00bcd4;
+  border-radius: 8px;
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.custom-button:hover {
+  background-color: white;
+  color: #00bcd4;
+}
+
+.view-more-button {
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  border-radius: 8px;
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.add-history-button {
+  background-color: #ff9800;
+  color: white;
+  border: 2px solid #ff9800;
+  border-radius: 8px;
+  display: block;
+}
+
+.edit-button {
+  background-color: #4caf50;
+  color: white;
+  border: 2px solid #4caf50;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: 2px solid red;
+  border-radius: 8px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

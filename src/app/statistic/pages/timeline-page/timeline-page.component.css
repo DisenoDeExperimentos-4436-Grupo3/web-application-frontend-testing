@@ -1,0 +1,138 @@
+.timeline-page {
+  transform: scale(0.3); /* Scale down to 30% for the timeline */
+  transform-origin: top left; /* Ensure scaling starts from the top left */
+}
+.members-container {
+  flex: 0 0 250px; /* Ancho fijo para la lista de miembros */
+  padding: 10px; /* Espaciado interno */
+  border-left: 1px solid #ccc; /* Línea separadora a la izquierda */
+  height: fit-content; /* Ajustar a la altura del contenido */
+  display: flex; /* Usar flexbox para organizar la lista */
+  flex-direction: column; /* Dirección de columna para la lista de miembros */
+}
+
+.members-container h3 {
+  margin: 0; /* Sin margen para el título */
+}
+.member-item {
+  display: flex; /* Usar flexbox para alinear el contenido */
+  align-items: center; /* Centrar verticalmente el contenido */
+  padding: 10px; /* Espaciado interno */
+  border-bottom: 1px solid #ccc; /* Línea separadora */
+}
+
+.member-item:last-child {
+  border-bottom: none; /* Sin línea para el último elemento */
+}
+
+.member-status, .member-role {
+  margin-left: 10px; /* Espacio a la izquierda de los textos */
+}
+
+.member-icon {
+  width: 24px; /* Ancho del ícono */
+  height: 24px; /* Altura del ícono */
+  margin-right: 10px; /* Espacio a la derecha del ícono */
+}
+/* Estilo para las historias de usuario */
+/* Estilo de la tabla de historias de usuario */
+.user-stories-table {
+  width: 100%; /* Ancho completo */
+  border-collapse: collapse; /* Colapsar bordes */
+  margin-top: 5px; /* Reducir espacio arriba de la tabla */
+}
+
+/* Estilo para los encabezados de la tabla */
+.user-stories-table th {
+  background-color: #3498db; /* Color de fondo azul para encabezados */
+  color: white; /* Color del texto */
+  padding: 3px; /* Reducir espaciado interno */
+  text-align: left; /* Alinear texto a la izquierda */
+  font-size: 10px; /* Tamaño de fuente más pequeño */
+}
+
+/* Estilo para las celdas de la tabla */
+.user-stories-table td {
+  border: 1px solid #ccc; /* Borde gris */
+  padding: 3px; /* Reducir espaciado interno */
+  font-size: 10px; /* Tamaño de fuente más pequeño */
+}
+
+/* Estilo para las filas de la tabla */
+.user-stories-table tr:nth-child(even) {
+  background-color: #f2f2f2; /* Fondo gris claro para filas pares */
+}
+
+/* Estilo para la estimación de esfuerzo */
+.effort-estimation {
+  margin-top: 3px; /* Reducir margen superior */
+}
+
+/* Estilo del modal */
+.modal {
+  display: block; /* Muestra el modal */
+  position: fixed; /* Posicionamiento fijo */
+  z-index: 1000; /* Asegúrate de que el modal esté por encima de otros elementos */
+  left: 0;
+  top: 0;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Alto completo */
+  overflow: auto; /* Habilita el desplazamiento si es necesario */
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo negro más oscuro con transparencia */
+}
+
+/* Contenido del modal */
+.modal-content {
+  background-color: #fefefe; /* Color de fondo del modal */
+  margin: 5% auto; /* Reducir margen superior y centrado */
+  padding: 15px; /* Reducir espaciado interno más amplio */
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); /* Sombra más ligera */
+  width: 90%; /* Ancho del modal más estrecho */
+  max-width: 250px; /* Ancho máximo del modal */
+}
+
+/* Estilo del botón de cerrar */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 20px; /* Tamaño de fuente más pequeño */
+  font-weight: bold;
+}
+
+/* Efecto hover para el botón de cerrar */
+.close:hover,
+.close:focus {
+  color: #e74c3c; /* Color rojo al pasar el mouse */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilo para inputs */
+input[type="date"],
+input[type="number"] {
+  margin: 3px 0; /* Reducir espaciado entre inputs */
+  padding: 5px; /* Reducir espaciado interno para los inputs */
+  border: 1px solid #ccc; /* Borde del input */
+  border-radius: 5px; /* Bordes redondeados para los inputs */
+  width: 100%; /* Ancho completo */
+  box-sizing: border-box; /* Incluye padding y borde en el ancho total */
+}
+
+/* Estilo del botón */
+button {
+  background-color: #3498db; /* Color de fondo azul */
+  color: white; /* Color del texto */
+  border: none; /* Sin borde */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 3px 8px; /* Reducir espaciado interno para botones */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  transition: background-color 0.3s; /* Transición suave al cambiar de color */
+  font-size: 10px; /* Tamaño de fuente más pequeño */
+  margin: 2px; /* Reducir espacio entre los botones */
+}
+
+/* Efecto hover para el botón */
+button:hover {
+  background-color: #2980b9; /* Color más oscuro al pasar el mouse */
+}

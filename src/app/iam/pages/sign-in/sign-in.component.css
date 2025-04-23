@@ -1,0 +1,73 @@
+/* Estilo general de la página de inicio de sesión */
+.sign-in-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 1.5em;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+/* Estilos para el encabezado del card */
+mat-card-header {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0;
+}
+
+mat-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estilos para los campos de formulario */
+mat-form-field {
+  width: 100%;
+  margin-bottom: 1.2em;
+}
+
+mat-form-field input {
+  padding: 0.5em;
+}
+
+mat-error {
+  font-size: 0.9rem;
+  color: #f44336; /* Color rojo para el mensaje de error */
+}
+
+/* Estilos para el botón de inicio de sesión */
+button {
+  width: 100%;
+  padding: 0.7em 0;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #1976d2;
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #1565c0;
+}
+
+button:disabled {
+  background-color: #ccc;
+  color: #777;
+}
+
+/* Responsive: ajuste del tamaño del card en pantallas pequeñas */
+@media (max-width: 600px) {
+  mat-card {
+    width: 90%;
+    max-width: 300px;
+  }
+}

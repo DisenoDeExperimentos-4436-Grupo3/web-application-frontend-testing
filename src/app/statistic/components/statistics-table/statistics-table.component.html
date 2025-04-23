@@ -1,0 +1,20 @@
+<table>
+  <thead>
+  <tr>
+    <th>{{ 'idHeader' | translate }}</th>
+    <th>{{ 'titleHeader' | translate }}</th>
+    <th>{{ 'descriptionHeader' | translate }}</th>
+    <th>{{ 'ownerHeader' | translate }}</th>
+    <th>{{ 'statusHeader' | translate }}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let userStory of userStories">
+    <td>{{ userStory.id }}</td>
+    <td>{{ userStory.title }}</td>
+    <td>{{ userStory.description }}</td>
+    <td>{{ userStory.owner }}</td>
+    <td>{{ userStory.status }}</td>
+  </tr>
+  </tbody>
+</table>

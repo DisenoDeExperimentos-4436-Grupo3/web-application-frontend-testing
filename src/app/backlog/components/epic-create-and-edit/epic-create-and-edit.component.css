@@ -1,0 +1,46 @@
+.form-list{
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+mat-card-actions{
+  display: flex;
+  justify-content: space-around;
+}
+
+.action-button-cancel{
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: transparent;
+  color: black;
+  height: 3rem;
+  width: 7rem;
+  font-size: 14px;
+
+  transition: 0.3s;
+}
+.action-button-cancel:hover{
+  background-color: #ff4a4a;
+  cursor: pointer;
+  border: red;
+  color: white;
+}
+
+.action-button-accept{
+  border-color:transparent;
+  border-radius: 8px;
+  background-color: #141414;
+  color: white;
+  height: 3rem;
+  width: 7rem;
+  transition: 0.3s;
+}
+.action-button-accept:hover{
+  background-color: black;
+  cursor: pointer;
+}
