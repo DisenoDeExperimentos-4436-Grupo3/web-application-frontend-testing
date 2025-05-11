@@ -14,7 +14,9 @@
           <input matInput type="password" placeholder="Password" id="password" name="password" formControlName="password">
           <mat-error *ngIf="isInvalidControl(form,'password')">{{ errorMessagesForControl(form,'password')}}</mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary">Sign Up</button>
+        <div #captchaElem class="captcha-container" style="margin: 20px 0;"></div>
+        <button mat-raised-button color="primary" type="submit">Sign Up</button>
+
       </form>
     </mat-card-content>
   </mat-card>

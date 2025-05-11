@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { BaseFormComponent } from "../../../shared/components/base-form.component";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { AuthenticationService } from "../../services/authentication.service";
@@ -9,6 +9,15 @@ import { MatInput } from "@angular/material/input";
 import { MatButton } from "@angular/material/button";
 import { NgIf } from "@angular/common";
 import { AuthenticationSectionComponent } from "../../../iam/components/authentication-section/authentication-section.component";
+
+declare global {
+  interface Window {
+    onRecaptchaLoadCallback: () => void;
+  }
+}
+
+
+declare const grecaptcha: any;
 
 @Component({
   selector: 'app-sign-up',
@@ -29,10 +38,27 @@ import { AuthenticationSectionComponent } from "../../../iam/components/authenti
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
-export class SignUpComponent extends BaseFormComponent implements OnInit {
+export class SignUpComponent extends BaseFormComponent implements OnInit, AfterViewInit {
 
   form!: FormGroup;
   submitted = false;
+
+  @ViewChild('captchaElem', { static: false }) captchaElem!: ElementRef;
+  captchaId: any;
+
+  ngAfterViewInit(): void {
+    const waitForCaptchaReady = setInterval(() => {
+      if (typeof grecaptcha !== 'undefined' && this.captchaElem) {
+        this.captchaId = grecaptcha.render(this.captchaElem.nativeElement, {
+          sitekey: '6Le8bjQrAAAAALs9RPVrbRSETQD-2VCB7suT9wgu',
+          callback: (token: string) => {
+            console.log('Captcha token:', token);
+          }
+        });
+        clearInterval(waitForCaptchaReady);
+      }
+    }, 500);
+  }
 
   constructor(private builder: FormBuilder, private authenticationService: AuthenticationService) {
     super();
@@ -45,12 +71,20 @@ export class SignUpComponent extends BaseFormComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.form.invalid) return;
-    let username = this.form.value.username;
-    let password = this.form.value.password;
-    const signUpRequest = new SignUpRequest(username, password);
+
+    const token = grecaptcha.getResponse(this.captchaId);
+    if (!token) {
+      alert('Por favor resuelve el CAPTCHA.');
+      return;
+    }
+
+    const { username, password } = this.form.value;
+    const signUpRequest = new SignUpRequest(username, password, token);
     this.authenticationService.signUp(signUpRequest);
     this.submitted = true;
+
+    grecaptcha.reset(this.captchaId);
   }
 }
