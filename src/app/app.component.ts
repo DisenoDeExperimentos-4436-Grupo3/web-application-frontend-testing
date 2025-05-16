@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {NavigationEnd, RouterOutlet} from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { TranslateService } from '@ngx-translate/core';
@@ -39,6 +39,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'ManageWise';
   isSignedIn: boolean = false;
+
   @ViewChild(MatSidenav, { static: true }) sidenav!: MatSidenav;
 
   options = [
@@ -76,6 +77,7 @@ export class AppComponent implements OnInit {
       }
     );
 
+
     // Configuración de la vista de Sidenav dependiendo del tamaño de la pantalla
     this.observer.observe(['(max-width: 1280px)']).subscribe((response) => {
       if (response.matches) {
@@ -86,6 +88,12 @@ export class AppComponent implements OnInit {
         this.sidenav.open();
       }
     });
+  }
+
+
+  signOut(): void {
+    this.authenticationService.signOut(); // Llama al método de cierre de sesión en el servicio
+    this.router.navigate(['/sign-in']); // Redirige al usuario a la página de inicio de sesión
   }
 
 

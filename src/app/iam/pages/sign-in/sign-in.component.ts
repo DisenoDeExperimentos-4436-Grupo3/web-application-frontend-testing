@@ -9,6 +9,7 @@ import { MatInput } from "@angular/material/input";
 import { MatButton } from "@angular/material/button";
 import { NgIf } from "@angular/common";
 import { AuthenticationSectionComponent } from "../../../iam/components/authentication-section/authentication-section.component";
+import {RouterLink} from "@angular/router";
 
 declare global {
   interface Window {
@@ -34,7 +35,8 @@ declare const grecaptcha: any;
     MatCardTitle,
     MatError,
     NgIf,
-    AuthenticationSectionComponent
+    AuthenticationSectionComponent,
+    RouterLink
   ],
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']

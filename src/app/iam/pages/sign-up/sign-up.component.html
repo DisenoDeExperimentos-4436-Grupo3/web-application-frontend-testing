@@ -14,6 +14,9 @@
           <input matInput type="password" placeholder="Password" id="password" name="password" formControlName="password">
           <mat-error *ngIf="isInvalidControl(form,'password')">{{ errorMessagesForControl(form,'password')}}</mat-error>
         </mat-form-field>
+
+        <a mat-button [routerLink]="['/sign-in']" style="margin-left: 20px; color: darkblue;">Ya tienes una cuenta?  Inicia Sesion</a>
+
         <div #captchaElem class="captcha-container" style="margin: 20px 0;"></div>
         <button mat-raised-button color="primary" type="submit">Sign Up</button>
 

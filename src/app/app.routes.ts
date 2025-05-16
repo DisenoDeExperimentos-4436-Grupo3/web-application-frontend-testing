@@ -12,7 +12,9 @@ import { SignUpComponent } from './iam/pages/sign-up/sign-up.component';
 import {authenticationGuard} from './iam/services/authentication.guard';
 import {AuthenticationSectionComponent} from './iam/components/authentication-section/authentication-section.component'
   export const routes: Routes = [
-    { path: 'statistics', component: TimelinePageComponent },
+
+    //canActivate: [authenticationGuard] sirve para proteger las rutas de un no inicio de sesion
+    { path: 'statistics', component: TimelinePageComponent, canActivate: [authenticationGuard] },
     { path: 'backlog', component: BacklogPageComponent, canActivate: [authenticationGuard] },
     { path: 'backlog-items', component: BacklogItemsPageComponent, canActivate: [authenticationGuard] },
     { path: 'members', component: MemberManagementComponent ,canActivate: [authenticationGuard]},

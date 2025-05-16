@@ -68,7 +68,9 @@ export class AuthenticationService {
           this.signedInUsername.next(response.username);
           localStorage.setItem('token', response.token);
           console.log(`Signed in as ${response.username} with token ${response.token}`);
-          this.router.navigate(['/statistics']).catch((error) => console.error('Navigation error:', error));
+
+          //envia automaticamente a backlog
+          this.router.navigate(['/backlog']).catch((error) => console.error('Navigation error:', error));
         },
         error: (error) => {
           this.signedIn.next(false);

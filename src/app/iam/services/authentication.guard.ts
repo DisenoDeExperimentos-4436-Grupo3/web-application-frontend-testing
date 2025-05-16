@@ -15,8 +15,8 @@ export const authenticationGuard: CanActivateFn = () => {
       if (isSignedIn) {
         return true;
       } else {
-        console.log('Redirecting to /sign-up');  // Depuración
-        router.navigate(['/sign-up']);
+        console.log('Redirecting to /sign-in');  // Depuración
+        router.navigate(['/sign-in']);
         return false;
       }
     })
