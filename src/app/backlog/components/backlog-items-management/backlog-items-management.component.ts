@@ -25,6 +25,7 @@ import { EpicCreateAndEditComponent } from "../epic-create-and-edit/epic-create-
 import {Sprint} from "../../model/sprint.entity"; // Importa el componente para épicos
 
 import { TranslateService } from '@ngx-translate/core';
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 
 @Component({
@@ -46,24 +47,31 @@ export class BacklogItemsManagementComponent {
     private userStoriesService: UserStoriesService,
     //private tasksService: TasksService,
     private epicsService: EpicsService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+
+    private authService: AuthenticationService // Inyecta el servicio de autenticación
+
+) {}
 
   private getAllUserStories(): void {
-    this.userStoriesService.getAll()
-      .subscribe((response: any) => {
-        this.userStories = response;
+    this.authService.currentUserId.subscribe((userId: number) => {
+      this.userStoriesService.getUserStoryByUserId(userId)
+        .subscribe((response: any) => {
+          this.userStories = response;
 
-        // Extrae todas las tareas de las historias de usuario
-        this.tasks = this.userStories.flatMap(userStory => userStory.tasks);
-      });
+          // Extrae todas las tareas de las historias de usuario
+          this.tasks = this.userStories.flatMap(userStory => userStory.tasks);
+        });
+    });
   }
 
   private getAllEpics(): void {
-    this.epicsService.getAll()
-      .subscribe((response: any) => {
-        this.epics = response;
-      });
+    this.authService.currentUserId.subscribe((userId: number) => {
+      this.epicsService.getEpicByUserId(userId)
+        .subscribe((response: any) => {
+          this.epics = response;
+        });
+    });
   }
 
   //delete items id

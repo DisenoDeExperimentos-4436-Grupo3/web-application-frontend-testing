@@ -14,6 +14,7 @@ import { SprintService } from "../../services/sprints.service";
 import {FormsModule} from "@angular/forms";
 
 import { TranslateService } from '@ngx-translate/core';
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 
 @Component({
@@ -34,7 +35,9 @@ export class ProductBacklogComponent {
   newSprint: Sprint = new Sprint(0, '', '', 'STARTED', new Date(), new Date());
 
   constructor(private userStoriesService: UserStoriesService,
-              private sprintsService: SprintService) {}
+              private sprintsService: SprintService,
+              private authService: AuthenticationService
+  ) {}
 
   // Cargar todas las historias de usuario
   private getAllUserStories(): void {

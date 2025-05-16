@@ -30,8 +30,9 @@ export class EpicsService {
   }
 
   // Crear recurso
-  create(item: Epic): Observable<Epic> {
-    return this.http.post<Epic>(this.resourcePath(), item, this.httpOptions)
+  create(userId: number, item: Epic): Observable<Epic> {
+    const url = `${this.resourcePath()}/${userId}`;
+    return this.http.post<Epic>(url, item, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -50,6 +51,12 @@ export class EpicsService {
   // Obtener todos los recursos
   getAll(): Observable<Epic[]> {
     return this.http.get<Epic[]>(this.resourcePath(), this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  //get epic por id de usuario
+  getEpicByUserId(userId: number): Observable<Epic[]> {
+    return this.http.get<Epic[]>(`${this.resourcePath()}/user/${userId}`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 

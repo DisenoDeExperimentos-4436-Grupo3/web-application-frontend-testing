@@ -11,6 +11,7 @@ import {EpicsService} from "../../services/epics.service";
 
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-epic-create-and-edit',
@@ -26,21 +27,25 @@ export class EpicCreateAndEditComponent {
     private epicService: EpicsService,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<EpicCreateAndEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Epic
+    @Inject(MAT_DIALOG_DATA) public data: Epic,
+    //agregar el autenticador
+    private authService: AuthenticationService
   ) {
     this.newEpic = data ? { ...data } : new Epic(0, '', '', 'TO_DO');
   }
 
   onSubmit(): void {
-    if (this.newEpic.id) {
-      this.epicService.update(this.newEpic.id, this.newEpic).subscribe(() => {
-        this.dialogRef.close(true);
-      });
-    } else {
-      this.epicService.create(this.newEpic).subscribe(() => {
-        this.dialogRef.close(true);
-      });
-    }
+    this.authService.currentUserId.subscribe((userId: number) => {
+      if (this.newEpic.id) {
+        this.epicService.update(this.newEpic.id, this.newEpic).subscribe(() => {
+          this.dialogRef.close(true);
+        });
+      } else {
+        this.epicService.create(userId, this.newEpic).subscribe(() => {
+          this.dialogRef.close(true);
+        });
+      }
+    });
   }
 
   onCancel(): void {

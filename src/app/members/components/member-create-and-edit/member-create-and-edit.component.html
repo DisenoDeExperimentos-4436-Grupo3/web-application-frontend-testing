@@ -19,7 +19,11 @@
 <!-- Rol -->
 <mat-form-field appearance="fill">
   <mat-label>Role</mat-label>
-  <input matInput [(ngModel)]="newMember.role" name="role" required>
+  <mat-select [(ngModel)]="newMember.role" name="role" required>
+    <mat-option [value]="'DEVELOPMENT_TEAM'">Development Team</mat-option>
+    <mat-option [value]="'SCRUM_MASTER'">Scrum Master</mat-option>
+    <mat-option [value]="'PROJECT_OWNER'">Project Owner</mat-option>
+  </mat-select>
 </mat-form-field>
 
 <!-- Botón de envío -->

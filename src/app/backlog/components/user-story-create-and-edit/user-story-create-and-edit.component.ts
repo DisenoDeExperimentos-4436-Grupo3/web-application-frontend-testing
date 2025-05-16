@@ -13,6 +13,7 @@ import {UserStory} from "../../model/user-story.entity";
 
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-user-story-create-and-edit',
@@ -29,25 +30,27 @@ export class UserStoryCreateAndEditComponent {
     private userStoriesService: UserStoriesService,
     private dialog: MatDialog,  // Para abrir el diálogo de añadir evento
     private dialogRef: MatDialogRef<UserStoryCreateAndEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: UserStory
-  ) {
+    @Inject(MAT_DIALOG_DATA) public data: UserStory,
+    private authService: AuthenticationService
+
+) {
     this.newUserStory = data ? { ...data } : new UserStory();
   }
 
   onSubmit(): void {
-    if (!this.newUserStory.id) {
-      const currentDateTime = new Date().toISOString(); // Obtener fecha y hora actuales
-    }
-    if (this.newUserStory.id) {
-      this.userStoriesService.update(this.newUserStory.id, this.newUserStory).subscribe(() => {
-        this.dialogRef.close(true);
-      });
-    } else {
-      this.userStoriesService.create(this.newUserStory).subscribe(() => {
-        this.dialogRef.close(true);
-      });
-    }
+    this.authService.currentUserId.subscribe((userId: number) => {
+      if (this.newUserStory.id) {
+        this.userStoriesService.update(this.newUserStory.id, this.newUserStory).subscribe(() => {
+          this.dialogRef.close(true);
+        });
+      } else {
+        this.userStoriesService.create(userId, this.newUserStory).subscribe(() => {
+          this.dialogRef.close(true);
+        });
+      }
+    });
   }
+
   onCancel(): void {
     this.dialogRef.close(false);
   }

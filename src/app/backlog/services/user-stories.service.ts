@@ -31,9 +31,16 @@ export class UserStoriesService {
   }
 
   // Crear recurso
-  create(item: any): Observable<UserStory> {
-    item.sprintId= 0;
-    return this.http.post<UserStory>(this.resourcePath(), item, this.httpOptions)
+  create(userId: number, item: any): Observable<UserStory> {
+    item.sprintId= 0; //por defecto  (0 = product backlog)
+    const url = `${this.resourcePath()}/${userId}`;
+    return this.http.post<UserStory>(url, item, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
+  //getUserStory por id de usuario
+  getUserStoryByUserId(userId: number): Observable<UserStory[]> {
+    return this.http.get<UserStory[]>(`${this.resourcePath()}/user/${userId}`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 

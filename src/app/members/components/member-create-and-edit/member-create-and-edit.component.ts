@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import {MatOption, MatSelect} from "@angular/material/select";
 
 @Component({
   selector: 'app-member-create-and-edit',
@@ -20,7 +21,10 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    CommonModule // Asegúrate de incluir CommonModule
+    CommonModule,
+    MatSelect,
+    MatOption,
+    // Asegúrate de incluir CommonModule
   ]
 })
 export class MemberCreateAndEditComponent implements OnInit {
