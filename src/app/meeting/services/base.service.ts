@@ -34,7 +34,6 @@ export class BaseService<T> {
   }
 
   // Método para eliminar un recurso
-  // Método para eliminar un recurso
   delete(id: any): Observable<void> {
     return this.http.delete<void>(`${this.resourcePath()}/${id}`, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));

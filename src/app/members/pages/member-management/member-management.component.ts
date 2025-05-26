@@ -9,6 +9,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { NgFor } from "@angular/common";
 import { MemberCreateAndEditComponent } from "../../components/member-create-and-edit/member-create-and-edit.component";
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-member-management',
@@ -20,19 +21,21 @@ import { MemberCreateAndEditComponent } from "../../components/member-create-and
 export class MemberManagementComponent implements OnInit {
   members: Member[] = [];
 
-  constructor(private membersService: MembersService, private dialog: MatDialog) {}
+  constructor(private membersService: MembersService, private dialog: MatDialog,
+              private authService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.getAllMembers();
   }
 
   getAllMembers(): void {
-    this.membersService.getAllMembers().subscribe((members: Member[]) => {
-      console.log(members);  // Log the members data to inspect its structure
-      this.members = members;
+    this.authService.currentUserId.subscribe((userId: number) => {
+      this.membersService.getMembersByUserId(userId).subscribe((members: Member[]) => {
+        console.log(members);  // Log the members data to inspect its structure
+        this.members = members;
+      });
     });
   }
-
 
   // Método para eliminar un miembro
   deleteMember(member: Member): void {

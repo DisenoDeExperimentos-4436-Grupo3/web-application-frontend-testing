@@ -16,8 +16,8 @@ export class StatisticsService {
 
   constructor(private http: HttpClient) {}
 
-  getUserStories(): Observable<Statistics[]> {
-    return this.http.get<Statistics[]>(`${this.apiUrl}/user-stories`).pipe(
+  getUserStories(userId: number): Observable<Statistics[]> {
+    return this.http.get<Statistics[]>(`${this.apiUrl}/user-stories/user/${userId}`).pipe(
       map((stories) => {
         // Si las historias pueden tener status null, quita el filtro
         return stories;  // Eliminamos el filtro
@@ -25,18 +25,18 @@ export class StatisticsService {
     );
   }
 
-loadUserStories(): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/user-stories`).pipe(
-    map((stories) =>
-      stories.map((story) => ({
-        id: story.id,
-        status: story.status,
-        title: story.title,
-        sprintId: story.sprintId,
-      }))
-    )
-  );
-}
+  loadUserStories(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/user-stories/user/${userId}`).pipe(
+      map((stories) =>
+        stories.map((story) => ({
+          id: story.id,
+          status: story.status,
+          title: story.title,
+          sprintId: story.sprintId,
+        }))
+      )
+    );
+  }
 
 
   // Método para obtener los Sprints desde la API
@@ -44,8 +44,13 @@ loadUserStories(): Observable<any[]> {
     return this.http.get<Sprint[]>(`${this.apiUrl}/sprints`);
   }
 
-  // Método para obtener los miembros con token
-  getMembers(): Observable<Member[]> {
+  //Metodo para obtener sprints por id de usuario
+  getSprintsByUserId(userId: number): Observable<Sprint[]> {
+    return this.http.get<Sprint[]>(`${this.apiUrl}/sprints/user/${userId}`);
+  }
+
+  // Método para obtener los miembros por userId con token
+  getMembers(userId: number): Observable<Member[]> {
     const token = localStorage.getItem('token');  // Obtén el token de localStorage
 
     // Asegúrate de que el token existe antes de agregarlo a las cabeceras
@@ -54,11 +59,11 @@ loadUserStories(): Observable<any[]> {
       'Authorization': token ? `Bearer ${token}` : ''
     });
 
-    return this.http.get<Member[]>(`${this.apiUrl}/members`, { headers });
+    return this.http.get<Member[]>(`${this.apiUrl}/members/user/${userId}`, { headers });
   }
 
-  // Método para obtener los roles de los miembros con token
-  getMemberRoles(): Observable<string[]> {
+  // Método para obtener los roles de los miembros por userId con token
+  getMemberRoles(userId: number): Observable<string[]> {
     const token = localStorage.getItem('token');
 
     const headers = new HttpHeaders({
@@ -66,7 +71,7 @@ loadUserStories(): Observable<any[]> {
       'Authorization': token ? `Bearer ${token}` : ''
     });
 
-    return this.http.get<Member[]>(`${this.apiUrl}/members`, { headers }).pipe(
+    return this.http.get<Member[]>(`${this.apiUrl}/members/user/${userId}`, { headers }).pipe(
       map(members => members.map(member => member.role))
     );
   }

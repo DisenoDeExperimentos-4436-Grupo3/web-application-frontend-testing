@@ -29,8 +29,9 @@ export class SprintService {
   }
 
   // Crear recurso
-  create(item: Sprint): Observable<Sprint> {
-    return this.http.post<Sprint>(this.resourcePath(), item, this.httpOptions)
+  create(userId: number, item: Sprint): Observable<Sprint> {
+    const url= `${this.resourcePath()}/${userId}`;
+    return this.http.post<Sprint>(url, item, this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
 
@@ -51,6 +52,13 @@ export class SprintService {
     return this.http.get<Sprint[]>(this.resourcePath(), this.httpOptions)
       .pipe(retry(2), catchError(this.handleError));
   }
+
+  //get sprint por id de usuario
+  getSprintByUserId(userId: number): Observable<Sprint[]> {
+    return this.http.get<Sprint[]>(`${this.resourcePath()}/user/${userId}`, this.httpOptions)
+      .pipe(retry(2), catchError(this.handleError));
+  }
+
 
   // Obtener Sprint Activo
   getActiveSprint(): Observable<Sprint | null> {

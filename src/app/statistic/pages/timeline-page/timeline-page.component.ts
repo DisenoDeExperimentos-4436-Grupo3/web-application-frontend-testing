@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { ChartComponent } from 'ng-apexcharts';
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-timeline-page',
@@ -35,7 +36,8 @@ export class TimelinePageComponent implements OnInit, AfterViewInit {
   constructor(
     private statisticsService: StatisticsService,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private authService: AuthenticationService
   ) {
     this.translate.setDefaultLang('en');
   }
@@ -81,27 +83,31 @@ export class TimelinePageComponent implements OnInit, AfterViewInit {
   }
 
   loadSprints() {
-    this.statisticsService.getSprints().subscribe({
-      next: (sprints) => {
-        console.log('Sprints cargados:', sprints);
-        this.sprints = sprints;
-        if (this.sprints.length > 0) {
-          this.updateChartSeries();
-        } else {
-          console.error('No se encontraron sprints.');
-        }
-      },
-      error: (error) => console.error('Error al cargar sprints:', error)
+    this.authService.currentUserId.subscribe((userId) => {
+      this.statisticsService.getSprintsByUserId(userId).subscribe({
+        next: (sprints) => {
+          console.log('Sprints cargados:', sprints);
+          this.sprints = sprints;
+          if (this.sprints.length > 0) {
+            this.updateChartSeries();
+          } else {
+            console.error('No se encontraron sprints.');
+          }
+        },
+        error: (error) => console.error('Error al cargar sprints:', error)
+      });
     });
   }
 
   loadUserStories() {
-    this.statisticsService.getUserStories().subscribe({
-      next: (stories) => {
-        console.log('User Stories cargadas:', stories);
-        this.userStories = stories;
-      },
-      error: (error) => console.error('Error al cargar user stories:', error)
+    this.authService.currentUserId.subscribe((userId) => {
+      this.statisticsService.getUserStories(userId).subscribe({
+        next: (stories) => {
+          console.log('User Stories cargadas:', stories);
+          this.userStories = stories;
+        },
+        error: (error) => console.error('Error al cargar user stories:', error)
+      });
     });
   }
 
@@ -146,17 +152,19 @@ export class TimelinePageComponent implements OnInit, AfterViewInit {
   navigateToStatistics() {
     this.router.navigate(['/statistics']);
   }
-private loadMembers(): void {
-    this.statisticsService.getMembers().subscribe({
-      next: (members) => {
-        console.log('Members cargados:', members);
-        this.members = members;
-        this.isLoadingMembers = false;
-      },
-      error: (error) => {
-        this.isLoadingMembers = false;
-        console.error('Error al cargar miembros:', error);
-      },
+  private loadMembers(): void {
+    this.authService.currentUserId.subscribe((userId) => {
+      this.statisticsService.getMembers(userId).subscribe({
+        next: (members) => {
+          console.log('Members cargados:', members);
+          this.members = members;
+          this.isLoadingMembers = false;
+        },
+        error: (error) => {
+          this.isLoadingMembers = false;
+          console.error('Error al cargar miembros:', error);
+        },
+      });
     });
   }
 }

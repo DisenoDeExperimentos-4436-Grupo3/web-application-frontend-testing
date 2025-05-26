@@ -1,7 +1,7 @@
 <mat-card id="product-backlog-card">
   <h6>Product Backlog</h6>
   <mat-card *ngFor="let userStory of productBacklog" class="us-card">
-    <div class="us-container">
+    <div class="us-container" *ngIf="userStory">
       <span>US{{ userStory.id }}</span>
       <span>{{ userStory.title }}</span>
       <span>{{ userStory.status }}</span>

@@ -25,9 +25,15 @@ export class MembersService {
     return this.http.get<Member[]>(this.apiUrl, { headers: this.getAuthHeaders() });
   }
 
+  //obetener miembros por id de usuario
+  getMembersByUserId(userId: number): Observable<Member[]> {
+    return this.http.get<Member[]>(`${this.apiUrl}/user/${userId}`, { headers: this.getAuthHeaders() });
+  }
+
   // Crear un miembro
-  create(member: Member): Observable<Member> {
-    return this.http.post<Member>(this.apiUrl, member, { headers: this.getAuthHeaders() });
+  create(userId: number, member: Member): Observable<Member> {
+    const url = `${this.apiUrl}/${userId}`;
+    return this.http.post<Member>(url, member, { headers: this.getAuthHeaders() });
   }
 
   // Actualizar un miembro

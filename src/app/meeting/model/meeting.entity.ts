@@ -6,14 +6,8 @@ export class Meeting {
   dateStr: string;
   timeStr: string;
   link: string;
-  recording: {
-    recordingLink: string;
-    duration: string;
-    publicAccess: boolean; // Esta propiedad debe estar aquí
-  };
-  host: number; // Solo el ID del host
-
   accessCode: string;
+  host: number; // Solo el ID del host
   members: number[]; // Agrega esta línea para incluir la propiedad members
 
   constructor() {
@@ -22,14 +16,8 @@ export class Meeting {
     this.dateStr = '';
     this.timeStr = '';
     this.link = '';
-    this.recording = {
-      recordingLink: '',
-      duration: '',
-      publicAccess: false, // Inicializar con un valor predeterminado
-    };
-    this.host = 0;
-
     this.accessCode = '';
+    this.host = 0;
     this.members = []; // Inicializa members como un array vacío
   }
 }

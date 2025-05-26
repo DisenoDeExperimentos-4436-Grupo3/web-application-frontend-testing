@@ -13,6 +13,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { AddHistoryEventComponent } from '../add-history-event/add-history-event.component';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
+import {AuthenticationService} from "../../../iam/services/authentication.service";
+import {SprintService} from "../../../backlog/services/sprints.service";
+import {MembersService} from "../../../members/services/members.service";
 
 
 @Component({
@@ -25,18 +28,46 @@ import { TranslateModule } from '@ngx-translate/core';
 export class IssueFormComponent {
   newIssue: Issue;
   newHistory: History = new History();
+  sprintNames: string[];
+  memberNames: string[];
 
   constructor(
     private issuesService: IssuesService,
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<IssueFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Issue
+    @Inject(MAT_DIALOG_DATA) public data: Issue,
+
+    private sprintsService: SprintService,
+    private membersService: MembersService,
+
+    private authService: AuthenticationService
   ) {
     this.newIssue = data ? { ...data } : new Issue();
+    this.sprintNames = [];
+    this.memberNames = [];
   }
 
 
+  ngOnInit(): void {
+    this.loadSprintsAndMembers();
+  }
+
+  private loadSprintsAndMembers(): void {
+    this.authService.currentUserId.subscribe((userId: number) => {
+      // Obtener nombres de sprints
+      this.sprintsService.getSprintByUserId(userId).subscribe((sprints: any[]) => {
+        this.sprintNames = sprints.map(sprint => sprint.title);
+      });
+
+      // Obtener nombres de miembros
+      this.membersService.getMembersByUserId(userId).subscribe((members: any[]) => {
+        this.memberNames = members.map(member => member.fullName);
+      });
+    });
+  }
+
   onSubmit(): void {
+    this.authService.currentUserId.subscribe((userId: number) => {
       function getFormattedDateTime(): string {
         return new Date().toLocaleString('es-PE', {
           year: 'numeric',
@@ -75,7 +106,7 @@ export class IssueFormComponent {
         assignmentHistory.description = `El issue fue asignado a ${this.newIssue.assignedTo}`;
 
         // Crear el issue y después añadir los eventos de historial
-        this.issuesService.createIssue(this.newIssue).subscribe(
+        this.issuesService.createIssue(userId, this.newIssue).subscribe(
           (createdIssue) => {
             this.newIssue = createdIssue;
 
@@ -100,37 +131,40 @@ export class IssueFormComponent {
           }
         );
       }
-    }
+    });
+  }
 
     onCancel(): void {
       this.dialogRef.close(null);
     }
 
-    addHistoryEvent(): void {
-      const dialogRef = this.dialog.open(AddHistoryEventComponent, { width: '400px' });
-      dialogRef.afterClosed().subscribe((result: History) => {
-        if (result) {
-          // Genera el próximo ID automáticamente basado en el historial actual
-          const maxId = this.newIssue.history.length > 0
-            ? Math.max(...this.newIssue.history.map(h => h.id))
-            : 0;
-          result.id = maxId + 1;
+  addHistoryEvent(): void {
+    const dialogRef = this.dialog.open(AddHistoryEventComponent, { width: '400px' });
+    dialogRef.afterClosed().subscribe((result: History) => {
+      if (result) {
+        // Genera el próximo ID automáticamente basado en el historial actual
+        const maxId = this.newIssue.history.length > 0
+          ? Math.max(...this.newIssue.history.map(h => h.id))
+          : 0;
+        result.id = maxId + 1;
 
-          // Agrega el nuevo evento de historial al backend si el issue ya existe
-          if (this.newIssue.id) {
-            this.issuesService.addHistoryEventToIssue(this.newIssue.id, result).subscribe(() => {
-              console.log('Historial actualizado y guardado correctamente.');
-            });
-          } else {
-            // Si el issue no existe, crea el issue primero
-            this.issuesService.createIssue(this.newIssue).subscribe((createdIssue) => {
+        // Agrega el nuevo evento de historial al backend si el issue ya existe
+        if (this.newIssue.id) {
+          this.issuesService.addHistoryEventToIssue(this.newIssue.id, result).subscribe(() => {
+            console.log('Historial actualizado y guardado correctamente.');
+          });
+        } else {
+          // Si el issue no existe, crea el issue primero
+          this.authService.currentUserId.subscribe((userId: number) => {
+            this.issuesService.createIssue(userId, this.newIssue).subscribe((createdIssue) => {
               this.newIssue = createdIssue;
               this.issuesService.addHistoryEventToIssue(this.newIssue.id, result).subscribe(() => {
                 console.log('Nuevo issue creado y evento de historial guardado correctamente.');
               });
             });
-          }
+          });
         }
-      });
-    }
+      }
+    });
+  }
 }

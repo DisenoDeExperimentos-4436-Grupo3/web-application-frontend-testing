@@ -9,6 +9,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import {MatOption, MatSelect} from "@angular/material/select";
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-member-create-and-edit',
@@ -35,7 +36,8 @@ export class MemberCreateAndEditComponent implements OnInit {
   constructor(
     private membersService: MembersService,
     private dialogRef: MatDialogRef<MemberCreateAndEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Member
+    @Inject(MAT_DIALOG_DATA) public data: Member,
+    private authService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -48,33 +50,35 @@ export class MemberCreateAndEditComponent implements OnInit {
   // Método para enviar los datos (crear o editar)
   onSubmit(): void {
     this.isLoading = true;
-    if (this.newMember.id) {
-      // Lógica de actualización
-      this.membersService.update(this.newMember.id, this.newMember).subscribe({
-        next: (updatedMember) => {
-          this.isLoading = false;
-          this.dialogRef.close(updatedMember); // Retornamos el miembro actualizado
-        },
-        error: (err: any) => {
-          this.isLoading = false;
-          this.errorMessage = `Error al actualizar el miembro: ${err.message || 'No se pudo actualizar el miembro'}`;
-          console.error('Error al actualizar el miembro:', err);
-        }
-      });
-    } else {
-      // Lógica de creación
-      this.membersService.create(this.newMember).subscribe({
-        next: (createdMember) => {
-          this.isLoading = false;
-          this.dialogRef.close(createdMember); // Retornamos el miembro creado
-        },
-        error: (err: any) => {
-          this.isLoading = false;
-          this.errorMessage = `Error al crear el miembro: ${err.message || 'No se pudo crear el miembro'}`;
-          console.error('Error al crear el miembro:', err);
-        }
-      });
-    }
+    this.authService.currentUserId.subscribe((userId: number) => {
+      if (this.newMember.id) {
+        // Lógica de actualización
+        this.membersService.update(this.newMember.id, this.newMember).subscribe({
+          next: (updatedMember) => {
+            this.isLoading = false;
+            this.dialogRef.close(updatedMember); // Retornamos el miembro actualizado
+          },
+          error: (err: any) => {
+            this.isLoading = false;
+            this.errorMessage = `Error al actualizar el miembro: ${err.message || 'No se pudo actualizar el miembro'}`;
+            console.error('Error al actualizar el miembro:', err);
+          }
+        });
+      } else {
+        // Lógica de creación
+        this.membersService.create(userId, this.newMember).subscribe({
+          next: (createdMember) => {
+            this.isLoading = false;
+            this.dialogRef.close(createdMember); // Retornamos el miembro creado
+          },
+          error: (err: any) => {
+            this.isLoading = false;
+            this.errorMessage = `Error al crear el miembro: ${err.message || 'No se pudo crear el miembro'}`;
+            console.error('Error al crear el miembro:', err);
+          }
+        });
+      }
+    });
   }
 
   // Método para cancelar la acción

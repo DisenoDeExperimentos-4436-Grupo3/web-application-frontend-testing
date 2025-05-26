@@ -4,4 +4,5 @@ export const environment = {production: false,
                             //serverBasePath: "https://my-json-server.typicode.com/estefanojaque/Managewise-reportes"
                             // Server Base Path for Spring Boot REST API
                             serverBasePath: 'http://localhost:8090/api/v1'
+                            //serverBasePath: 'https://managewise-diseno-back.onrender.com/api/v1'
                             };

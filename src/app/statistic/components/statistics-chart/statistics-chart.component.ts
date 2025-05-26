@@ -5,6 +5,7 @@ import { Statistics } from '../../model/statistic-entity/statistic.entity';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 Chart.register(...registerables);
 
@@ -22,7 +23,8 @@ export class StatisticsChartComponent implements OnInit {
   constructor(
     private statisticsService: StatisticsService,
     private router: Router,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private authService: AuthenticationService
   ) {
     this.translate.setDefaultLang('en');
     this.translate.use('en'); // or 'in'
@@ -33,40 +35,43 @@ export class StatisticsChartComponent implements OnInit {
   }
 
   fetchStatistics() {
-    // Fetch sprints from the API
-    this.statisticsService.getSprints().subscribe((sprints) => {
-      this.sprints = sprints;  // Assign the sprints to the array
+    // Suscribirse al Observable para obtener el userId
+    this.authService.currentUserId.subscribe((userId) => {
+      // Fetch sprints from the API
+      this.statisticsService.getSprintsByUserId(userId).subscribe((sprints) => {
+        this.sprints = sprints; // Assign the sprints to the array
 
-      // Fetch user stories from the API
-      this.statisticsService.getUserStories().subscribe((statistics: Statistics[]) => {
-        console.log(statistics);  // Verify the response of the user stories
+        // Fetch user stories from the API
+        this.statisticsService.getUserStories(userId).subscribe((statistics: Statistics[]) => {
+          console.log(statistics); // Verify the response of the user stories
 
-        const sprintCounts: { [key: number]: { complete: number; inProgress: number; total: number; titlesComplete: { title: string; owner: string }[]; titlesInProgress: { title: string; owner: string }[] } } = {};
+          const sprintCounts: { [key: number]: { complete: number; inProgress: number; total: number; titlesComplete: { title: string; owner: string }[]; titlesInProgress: { title: string; owner: string }[] } } = {};
 
-        // Initialize sprintCounts object based on dynamic sprints
-        this.sprints.forEach(sprint => {
-          sprintCounts[sprint.id] = { complete: 0, inProgress: 0, total: 0, titlesComplete: [], titlesInProgress: [] };
-        });
+          // Initialize sprintCounts object based on dynamic sprints
+          this.sprints.forEach(sprint => {
+            sprintCounts[sprint.id] = { complete: 0, inProgress: 0, total: 0, titlesComplete: [], titlesInProgress: [] };
+          });
 
-        // Process user stories and update sprintCounts
-        statistics.forEach(stat => {
-          console.log(stat.status);  // Verify the values of 'status'
+          // Process user stories and update sprintCounts
+          statistics.forEach(stat => {
+            console.log(stat.status); // Verify the values of 'status'
 
-          // Check if the status and sprint are valid before proceeding
-          if (stat.status && sprintCounts[stat.sprint]) {
-            if (stat.status === 'DONE') {
-              sprintCounts[stat.sprint].complete++;
-              sprintCounts[stat.sprint].titlesComplete.push({ title: stat.title, owner: stat.owner });
-            } else if (stat.status === 'TO_DO') {
-              sprintCounts[stat.sprint].inProgress++;
-              sprintCounts[stat.sprint].titlesInProgress.push({ title: stat.title, owner: stat.owner });
+            // Check if the status and sprint are valid before proceeding
+            if (stat.status && sprintCounts[stat.sprint]) {
+              if (stat.status === 'DONE') {
+                sprintCounts[stat.sprint].complete++;
+                sprintCounts[stat.sprint].titlesComplete.push({ title: stat.title, owner: stat.owner });
+              } else if (stat.status === 'TO_DO') {
+                sprintCounts[stat.sprint].inProgress++;
+                sprintCounts[stat.sprint].titlesInProgress.push({ title: stat.title, owner: stat.owner });
+              }
+              sprintCounts[stat.sprint].total++;
             }
-            sprintCounts[stat.sprint].total++;
-          }
-        });
+          });
 
-        // Create the chart with the sprint counts
-        this.createChart(sprintCounts);
+          // Create the chart with the sprint counts
+          this.createChart(sprintCounts);
+        });
       });
     });
   }

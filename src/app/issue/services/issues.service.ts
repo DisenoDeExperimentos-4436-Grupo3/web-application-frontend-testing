@@ -18,6 +18,10 @@ export class IssuesService extends BaseService<Issue> {
     return this.httpClient.get<Issue[]>(`${this.basePath}${this.resourceEndpoint}`, this.httpOptions);
   }
 
+  getIssuesByUserId(userId: number): Observable<Issue[]> {
+    return this.httpClient.get<Issue[]>(`${this.basePath}${this.resourceEndpoint}/user/${userId}`, this.httpOptions);
+  }
+
    deleteIssue(id: number): Observable<void> {
          return this.httpClient.delete<void>(`${this.basePath}${this.resourceEndpoint}/${id}`, this.httpOptions);
        }
@@ -28,8 +32,9 @@ export class IssuesService extends BaseService<Issue> {
     }
 
   // Método específico para crear un nuevo issue
-    createIssue(issue: Issue): Observable<Issue> {
-      return this.httpClient.post<Issue>(`${this.basePath}${this.resourceEndpoint}`, issue, this.httpOptions);
+    createIssue(userId:number, issue: Issue): Observable<Issue> {
+      const url = `${this.basePath}${this.resourceEndpoint}/${userId}`;
+      return this.httpClient.post<Issue>(url, issue, this.httpOptions);
     }
 
    // Método específico para añadir un evento de historial a un issue dado

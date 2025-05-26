@@ -6,7 +6,14 @@
     <h4 mat-dialog-title>{{ editMode ? 'Editar Reunión' : 'Nueva Reunión' }}</h4>
 
     <mat-form-field>
-      <input matInput placeholder="ID" name="ID" required [(ngModel)]="meeting.id" [disabled]="true">
+      <input
+        matInput
+        placeholder="TÍTULO"
+        name="TITLE"
+        required
+        [(ngModel)]="meeting.title"
+        [disabled]="editMode"
+      >
     </mat-form-field>
 
     <mat-form-field>
@@ -24,15 +31,9 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input
-        matInput
-        placeholder="TÍTULO"
-        name="TITLE"
-        required
-        [(ngModel)]="meeting.title"
-        [disabled]="editMode"
-      >
+      <input matInput placeholder="AccessCode" name="accessCode" required [(ngModel)]="meeting.accessCode">
     </mat-form-field>
+
   </mat-dialog-content>
 
   <mat-dialog-actions>

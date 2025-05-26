@@ -21,6 +21,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { MemberService } from '../../services/member.service'; // Servicio para obtener miembros
 
 import { TranslateService } from '@ngx-translate/core';
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 @Component({
   selector: 'app-meeting-create-and-edit',
@@ -52,7 +53,8 @@ export class MeetingCreateAndEditComponent implements OnInit {
   private meetingService: MeetingService = inject(MeetingService);
   private memberService: MemberService = inject(MemberService); // Servicio inyectado
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<MeetingCreateAndEditComponent>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<MeetingCreateAndEditComponent>,
+              private authService:AuthenticationService) {
     this.meeting = data.meeting;
     this.editMode = data.editMode;
   }
@@ -111,24 +113,11 @@ private createResource(): void {
   this.meeting.timeStr = formattedTime;
 
   this.meeting.members = this.members.map(m => m.id);
-  this.meeting.accessCode = uuidv4(); // Genera UUID para el código de acceso
 
-  const randomHost = this.selectRandomHost();
-  if (randomHost) {
-    console.log('Host seleccionado:', randomHost);
-    this.meeting.host = randomHost.id;
-  }
-  this.meeting.link = this.generateRandomLink();
-
-  this.meeting.recording = {
-    recordingLink: this.generateRecordingLink(),
-    duration: this.generateRandomDuration(),
-    publicAccess: this.generateRandomAccess()
-  };
-
-  this.meetingService.create(this.meeting).subscribe(response => {
-    this.meeting = response; // Asegúrate de asignar la respuesta completa, incluyendo el código de acceso
-    this.addRecording(this.meeting);
+  this.authService.currentUserId.subscribe((userId: number) => {
+    this.meetingService.create(userId, this.meeting).subscribe(response => {
+      this.meeting = response;
+    });
   });
 }
 
@@ -140,55 +129,10 @@ private createResource(): void {
     });
   }
 
-  private addRecording(meeting: Meeting): void {
-    const recording = {
-      title: meeting.title,
-      dateStr: meeting.dateStr,
-      timeStr: meeting.timeStr,
-      link: meeting.link,
-      recordingLink: meeting.recording.recordingLink,
-      duration: this.generateRandomDuration(),
-      publicAccess: this.generateRandomAccess()
-    };
-
-    // Lógica para añadir el recording a tu data source de recordings
-  }
-
-  private generateRandomLink(): string {
-    const randomPart = Math.random().toString(36).substring(2, 8);
-    return `https://meet.google.com/${randomPart}`;
-  }
-
-  private generateRecordingLink(): string {
-    return `https://meet.google.com/recordings/${this.meeting.title.replace(/\s+/g, '-').toLowerCase()}`;
-  }
-
-  private generateRandomDuration(): string {
-    const hours = Math.floor(Math.random() * 2);
-    const minutes = Math.floor(Math.random() * 60);
-    return `${hours}h ${minutes}m`;
-  }
-
-  private generateRandomAccess(): boolean {
-    return Math.random() < 0.5;
-  }
-
   private loadMembers(): void {
     this.memberService.getAll().subscribe((members) => {
       this.members = members;
     });
-  }
-
-  private generateAccessCode(): string {
-    return Math.random().toString(36).substring(2, 8).toUpperCase();
-  }
-
-  private selectRandomHost(): any {
-    if (this.members.length > 0) {
-      const randomIndex = Math.floor(Math.random() * this.members.length);
-      return this.members[randomIndex];
-    }
-    return null;
   }
 
   // UI Event Handlers
@@ -210,7 +154,7 @@ private createResource(): void {
   }
 
   onClose(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(this.meeting); // Devuelve el objeto `meeting` creado o actualizado
   }
 
   ngOnInit(): void {

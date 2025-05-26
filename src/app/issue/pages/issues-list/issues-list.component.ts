@@ -14,6 +14,8 @@ import { MatInputModule } from '@angular/material/input'; // Módulo de inputs d
 import { MatFormFieldModule } from '@angular/material/form-field'; // Módulo para campos de formularios de Angular Material
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
+import {AuthenticationService} from "../../../iam/services/authentication.service";
+import {SprintService} from "../../../backlog/services/sprints.service";
 
 @Component({
   selector: 'app-issues-list', // Selector del componente
@@ -21,14 +23,13 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [MatCardModule, FormsModule, NgFor, MatFormFieldModule, MatInputModule, MatSelectModule,TranslateModule], // Módulos importados que el componente usará
   templateUrl: './issues-list.component.html', // Ruta de la plantilla HTML del componente
   styleUrls: ['./issues-list.component.css'] // Ruta de la hoja de estilos del componente
-})
+  })
 export class IssuesListComponent implements OnInit {
   issues: Issue[] = []; // Arreglo para almacenar la lista de "issues"
   filteredIssues: Issue[] = []; // Arreglo para almacenar los "issues" filtrados
 
-
   // Listas de sprints y prioridades disponibles
-  sprints: string[] = ['SPRINT 1', 'SPRINT 2','SPRINT 3', 'SPRINT 4'];
+  sprints: string[] = [];
   priorities: string[] = ['LOW', 'MEDIUM', 'HIGH'];
 
   // Variables para los filtros seleccionados
@@ -36,18 +37,32 @@ export class IssuesListComponent implements OnInit {
   selectedPriority: string | null = null;
 
   // Inyección de dependencias: el servicio de "issues" y el servicio de diálogos
-  constructor(private issuesService: IssuesService, private dialog: MatDialog) {}
+  constructor(private issuesService: IssuesService, private dialog: MatDialog,
+              private authService: AuthenticationService,
+              private sprintsService: SprintService) {}
 
   // Método que se ejecuta al inicializar el componente
   ngOnInit(): void {
     this.loadIssues(); // Carga los "issues" al iniciar el componente
+    this.loadSprints();
+  }
+
+  private loadSprints(): void {
+    this.authService.currentUserId.subscribe((userId: number) => {
+      // Obtener nombres de sprints
+      this.sprintsService.getSprintByUserId(userId).subscribe((sprints: any[]) => {
+        this.sprints = sprints.map(sprint => sprint.title);
+      });
+    });
   }
 
   // Cargar todos los "issues" desde el servicio
   loadIssues(): void {
-    this.issuesService.getAllIssues().subscribe((data: Issue[]) => {
-      this.issues = data; // Asigna los "issues" obtenidos
-      this.filteredIssues = data; // Inicialmente, todos los "issues" están filtrados
+    this.authService.currentUserId.subscribe((userId: number) => {
+      this.issuesService.getIssuesByUserId(userId).subscribe((data: Issue[]) => {
+        this.issues = data; // Asigna los "issues" obtenidos
+        this.filteredIssues = data; // Inicialmente, todos los "issues" están filtrados
+      });
     });
   }
 

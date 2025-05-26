@@ -12,9 +12,9 @@ import { MeetingService } from '../../services/meeting.service';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { MeetingInfoComponent } from '../../components/meeting-info/meeting-info.component';
-import { RecordingManagementComponent } from '../../components/recording-management/recording-management.component';
-import { MemberService } from '../../services/member.service'; // Cambiado a MemberService
-
+import { MemberService } from '../../services/member.service';
+import { AuthenticationService } from "../../../iam/services/authentication.service";
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-meeting-management',
@@ -25,10 +25,7 @@ import { MemberService } from '../../services/member.service'; // Cambiado a Mem
     MatIconModule,
     MatButtonModule,
     MatPaginatorModule,
-    MeetingCreateAndEditComponent,
-    MeetingInfoComponent,
-    NgClass,
-    TranslateModule,RecordingManagementComponent
+    TranslateModule
   ],
   templateUrl: './meeting-management.component.html',
   styleUrls: ['./meeting-management.component.css']
@@ -39,11 +36,14 @@ export class MeetingManagementComponent implements OnInit {
   meeting!: Array<Meeting>;
   isEditMode: boolean;
 
-  private meetingService: MeetingService = inject(MeetingService);
   private matDialog: MatDialog = inject(MatDialog);
 
   // Constructor
-  constructor() {
+  constructor(
+    private meetingService: MeetingService,
+    private authService: AuthenticationService,
+    private cdr: ChangeDetectorRef // Inyección del servicio ChangeDetectorRef
+  ) {
     this.isEditMode = false;
     this.meetingData = {} as Meeting;
     this.meeting = [];
@@ -55,17 +55,20 @@ export class MeetingManagementComponent implements OnInit {
     this.meetingData = {} as Meeting;
   }
 
-  // CRUD Actions
+  // get all by hostId (userId)
   private getAllResources(): void {
-    this.meetingService.getAll()
-      .subscribe((response: any) => {
-        this.meeting = response.map((item: Meeting) => {
-          return {
-            ...item,
-            dateStr: this.parseDate(item.dateStr)  // Convertir dateStr a objeto Date
-          };
+    this.authService.currentUserId.subscribe((userId: number) => {
+      this.meetingService.getByUserId(userId)
+        .subscribe((response: any) => {
+          this.meeting = response.map((item: Meeting) => {
+            return {
+              ...item,
+              dateStr: this.parseDate(item.dateStr) // Convertir dateStr a objeto Date
+            };
+          });
+          this.cdr.detectChanges(); // Forzar la detección de cambios
         });
-      });
+    });
   }
 
   private parseDate(dateStr: string): Date | null {
@@ -74,11 +77,14 @@ export class MeetingManagementComponent implements OnInit {
   }
 
   private createResource(): void {
-    this.meetingService.create(this.meetingData)
-      .subscribe(response => {
-        this.meeting.push({ ...response });
-      });
-  };
+    this.authService.currentUserId.subscribe((userId: number) => {
+      this.meetingService.create(userId, this.meetingData)
+        .subscribe(response => {
+          this.meeting = [...this.meeting, { ...response }]; // Agregar el nuevo recurso a la lista
+          this.cdr.detectChanges(); // Forzar la detección de cambios
+        });
+    });
+  }
 
   private updateResource(): void {
     let resourceToUpdate: Meeting = this.meetingData;
@@ -90,8 +96,9 @@ export class MeetingManagementComponent implements OnInit {
           }
           return resource;
         });
+        this.cdr.detectChanges(); // Forzar la detección de cambios
       });
-  };
+  }
 
   private deleteResource(id: number): void {
     this.meetingService.delete(id)
@@ -99,8 +106,9 @@ export class MeetingManagementComponent implements OnInit {
         this.meeting = this.meeting.filter(meeting => {
           return meeting.id !== id;
         });
+        this.cdr.detectChanges(); // Forzar la detección de cambios
       });
-  };
+  }
 
   // UI Event Handlers
   onEditItem(element: Meeting) {
@@ -120,13 +128,17 @@ export class MeetingManagementComponent implements OnInit {
   }
 
   onOpenDialog() {
-    const _matdialog = this.matDialog.open(MeetingCreateAndEditComponent, {
+    const dialogRef = this.matDialog.open(MeetingCreateAndEditComponent, {
       width: '500px',
       height: '400px',
       data: { meeting: this.meetingData, editMode: this.isEditMode }
     });
-    _matdialog.afterClosed().subscribe(() => {
-      this.getAllResources();
+
+    // Esperar a que el diálogo se cierre antes de recargar los datos
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) { // Verifica si se devolvió un resultado válido
+        this.getAllResources(); // Recargar la lista de reuniones desde la base de datos
+      }
     });
   }
 
