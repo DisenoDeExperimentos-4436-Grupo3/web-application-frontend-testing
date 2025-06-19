@@ -13,7 +13,7 @@
   <span class="mat-spacer"></span> <!-- Esto empuja los elementos hacia la derecha -->
 
   <app-authentication-section *ngIf="!isSignedIn"/>
-  <app-language-switcher style="color: white;"></app-language-switcher>
+<!--  <app-language-switcher style="color: white;"></app-language-switcher>-->
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -27,10 +27,12 @@
           <ng-container *ngIf="option.icon.startsWith('http'); else materialIcon">
             <img [src]="option.icon" alt="{{ option.title }} icon" width="24px" height="24px">
           </ng-container>
+
           <ng-template #materialIcon>
             <mat-icon matListItemIcon>{{ option.icon }}</mat-icon>
           </ng-template>
           {{ option.title }}
+
         </mat-list-item>
       </ng-container>
 

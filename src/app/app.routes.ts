@@ -13,12 +13,12 @@ import {AuthenticationSectionComponent} from './iam/components/authentication-se
   export const routes: Routes = [
 
     //canActivate: [authenticationGuard] sirve para proteger las rutas de un no inicio de sesion
-    { path: 'statistics', component: TimelinePageComponent, canActivate: [authenticationGuard] },
+    //{ path: 'statistics', component: TimelinePageComponent, canActivate: [authenticationGuard] },
     { path: 'backlog', component: BacklogPageComponent, canActivate: [authenticationGuard] },
     { path: 'backlog-items', component: BacklogItemsPageComponent, canActivate: [authenticationGuard] },
     { path: 'members', component: MemberManagementComponent ,canActivate: [authenticationGuard]},
-    { path: 'meeting', component: MeetingManagementComponent, canActivate: [authenticationGuard] },
-    { path: 'issues', component: IssuesListComponent,canActivate: [authenticationGuard] },
+    //{ path: 'meeting', component: MeetingManagementComponent, canActivate: [authenticationGuard] },
+    //{ path: 'issues', component: IssuesListComponent,canActivate: [authenticationGuard] },
 
     { path: '', component: PageNotFoundComponent },
      // Asegúrate de que esta ruta esté definida
