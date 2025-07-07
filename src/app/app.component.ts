@@ -47,9 +47,9 @@ export class AppComponent implements OnInit {
   ];
 
   otherOptions = [
-    //{ icon: 'https://cdn-icons-png.flaticon.com/512/87/87578.png', path: '/statistics', title: 'Statistics' },
+    { icon: 'https://cdn-icons-png.flaticon.com/512/87/87578.png', path: '/statistics', title: 'Statistics' },
     { icon: 'https://i.imgur.com/X51XVUz.png', path: '/backlog', title: 'Backlog' },
-    //{ icon: 'https://i.imgur.com/xQxGLrm.png', path: '/issues', title: 'Issues' },
+    { icon: 'https://i.imgur.com/xQxGLrm.png', path: '/issues', title: 'Issues' },
     { icon: 'https://i.imgur.com/XkRHbGU.png', path: '/members', title: 'Members' },
     //{ icon: 'https://i.imgur.com/n1IHpmx.png', path: '/meeting', title: 'Meeting' },
   ];
