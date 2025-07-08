@@ -18,7 +18,7 @@ import {AuthenticationSectionComponent} from './iam/components/authentication-se
     { path: 'backlog-items', component: BacklogItemsPageComponent, canActivate: [authenticationGuard] },
     { path: 'members', component: MemberManagementComponent ,canActivate: [authenticationGuard]},
     //{ path: 'meeting', component: MeetingManagementComponent, canActivate: [authenticationGuard] },
-    { path: 'issues', component: IssuesListComponent,canActivate: [authenticationGuard] },
+    //{ path: 'issues', component: IssuesListComponent,canActivate: [authenticationGuard] },
 
     { path: '', component: PageNotFoundComponent },
      // Asegúrate de que esta ruta esté definida
