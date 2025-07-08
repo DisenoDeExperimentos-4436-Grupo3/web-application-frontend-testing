@@ -1,5 +1,5 @@
 <div class="form-list">
-  <h6 class="form-title">{{ newEpic.id ? 'Edit Epic' : 'Create a new Epic' }}</h6>
+  <h6 class="form-title">{{ newEpic.id ? ('editEpic' | translate) : ('createNewEpic' | translate) }}</h6>
   <form (ngSubmit)="onSubmit()" class="epic-form">
     <mat-form-field>
       <mat-label>{{ 'title' | translate }}</mat-label>
@@ -13,7 +13,7 @@
 
     <mat-card-actions>
       <button class="action-button-cancel" mat-raised-button color="warn" (click)="onCancel()" type="button">{{'cancel' | translate}}</button>
-      <button class="action-button-accept" mat-raised-button color="primary" type="submit">{{ newEpic.id ? 'Save' : 'Add' }}</button>
+      <button class="action-button-accept" mat-raised-button color="primary" type="submit">{{ newEpic.id ? ('save' | translate) : ('add' | translate) }}</button>
     </mat-card-actions>
   </form>
 </div>

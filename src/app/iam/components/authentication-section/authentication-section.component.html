@@ -3,7 +3,7 @@
 <!-- Authenticated Scenario Information and Available Actions -->
 <ng-template #authenticated>
   <span class="mat-body">Welcome, {{ currentUserName }}</span> |
-  <button mat-button (click)="onSignOut()">Sign Out</button>
+  <button mat-button (click)="onSignOut()">{{ 'signOut' | translate }}</button>
 </ng-template>
 
 <!-- Anonymous Scenario Available Actions -->

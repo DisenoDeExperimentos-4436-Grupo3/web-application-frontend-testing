@@ -10,6 +10,7 @@ import { MatButton } from "@angular/material/button";
 import { NgIf } from "@angular/common";
 import { AuthenticationSectionComponent } from "../../../iam/components/authentication-section/authentication-section.component";
 import {RouterLink} from "@angular/router";
+import {TranslateModule} from "@ngx-translate/core";
 
 declare global {
   interface Window {
@@ -24,20 +25,21 @@ declare const grecaptcha: any;
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [
-    MatCard,
-    MatCardHeader,
-    MatCardContent,
-    MatFormField,
-    ReactiveFormsModule,
-    MatInput,
-    MatButton,
-    MatCardTitle,
-    MatError,
-    NgIf,
-    AuthenticationSectionComponent,
-    RouterLink
-  ],
+    imports: [
+        MatCard,
+        MatCardHeader,
+        MatCardContent,
+        MatFormField,
+        ReactiveFormsModule,
+        MatInput,
+        MatButton,
+        MatCardTitle,
+        MatError,
+        NgIf,
+        AuthenticationSectionComponent,
+        RouterLink,
+        TranslateModule
+    ],
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })

@@ -43,7 +43,7 @@
     <h6>Sprint Backlog</h6>
     <form class="sprint-backlog-form" (ngSubmit)="createSprint()">
       <mat-form-field>
-        <mat-label>{{ 'name' | translate }}</mat-label>
+        <mat-label>{{ 'nameLabel' | translate }}</mat-label>
         <input matInput [(ngModel)]="newSprint.title" name="name" required>
       </mat-form-field>
       <mat-form-field>
