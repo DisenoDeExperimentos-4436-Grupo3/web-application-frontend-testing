@@ -12,6 +12,11 @@
 
   <span class="mat-spacer"></span> <!-- Esto empuja los elementos hacia la derecha -->
 
+  <button mat-icon-button (click)="toggleDarkMode()" class="theme-toggle">
+    <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
+
+
   <app-authentication-section *ngIf="!isSignedIn"/>
   <app-language-switcher style="color: white;"></app-language-switcher>
 </mat-toolbar>

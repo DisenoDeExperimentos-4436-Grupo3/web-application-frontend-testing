@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 import {MatOption, MatSelect} from "@angular/material/select";
 import {AuthenticationService} from "../../../iam/services/authentication.service";
 import { TranslateModule } from "@ngx-translate/core";
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-member-create-and-edit',
