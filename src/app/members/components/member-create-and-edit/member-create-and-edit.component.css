@@ -1,25 +1,31 @@
-/* Estilo global del componente */
+/* ===== CONTENEDOR PRINCIPAL ===== */
 :host {
   display: block;
   margin: 20px;
   padding: 25px;
-  background-color: #F3F4F6; /* Color de fondo suave */
+  background-color: #F3F4F6;
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 :host:hover {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* Estilo del mat-card */
+/* ===== MODO OSCURO PARA EL HOST ===== */
+body.dark-theme :host {
+  background-color: #1e1e1e;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== MAT CARD ===== */
 mat-card {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 mat-card:hover {
@@ -27,36 +33,44 @@ mat-card:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Estilo para el contenido del mat-card */
+/* ===== MODO OSCURO PARA MAT CARD ===== */
+body.dark-theme mat-card {
+  background-color: #2a2a2a;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== CONTENIDO Y TÍTULOS ===== */
 mat-card-content {
   padding: 20px 0;
 }
 
-/* Títulos dentro del mat-card */
 mat-card-title {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #4E342E; /* Marrón oscuro profundo */
+  color: #4E342E;
   margin-bottom: 20px;
   text-align: center;
   letter-spacing: 1px;
 }
 
-/* Estilo del formulario */
+body.dark-theme mat-card-title {
+  color: #ffccbc;
+}
+
+/* ===== FORMULARIO ===== */
 form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Estilo para los campos de formulario */
 mat-form-field {
   width: 100%;
 }
 
-/* Estilo para los botones */
+/* ===== BOTONES ===== */
 button {
-  background-color: #4E342E; /* Marrón oscuro */
+  background-color: #4E342E;
   color: #FFFFFF;
   border: none;
   padding: 12px 24px;
@@ -69,7 +83,7 @@ button {
 }
 
 button:hover {
-  background-color: #7B5E57; /* Marrón claro */
+  background-color: #7B5E57;
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
@@ -79,19 +93,33 @@ button:active {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo del botón de cancelación */
+/* MODO OSCURO BOTONES */
+body.dark-theme button {
+  background-color: #6d4c41;
+}
+
+body.dark-theme button:hover {
+  background-color: #8d6e63;
+}
+
+/* ===== BOTÓN CANCELAR ===== */
 button.cancel-btn {
-  background-color: #EF5350; /* Rojo oscuro */
-  color: #FFFFFF;
+  background-color: #EF5350;
 }
 
 button.cancel-btn:hover {
-  background-color: #FF8A80; /* Rojo claro */
-  transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+  background-color: #FF8A80;
 }
 
-/* Estilo de los mensajes de error */
+body.dark-theme button.cancel-btn {
+  background-color: #e57373;
+}
+
+body.dark-theme button.cancel-btn:hover {
+  background-color: #ef5350;
+}
+
+/* ===== MENSAJE DE ERROR ===== */
 .error-message {
   color: #D32F2F;
   font-size: 0.9rem;
@@ -106,7 +134,7 @@ button.cancel-btn:hover {
   40%, 60% { transform: translateX(2px); }
 }
 
-/* Loader */
+/* ===== LOADER ===== */
 .is-loading {
   display: flex;
   justify-content: center;
@@ -121,8 +149,12 @@ button.cancel-btn:hover {
   animation: blink 1s infinite;
 }
 
-/* Efecto de parpadeo para el loader */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
+}
+
+/* MODO OSCURO LOADER */
+body.dark-theme .is-loading::after {
+  color: #ffccbc;
 }

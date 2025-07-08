@@ -1,75 +1,132 @@
+/* ======================== */
+/* ESTILOS BASE (MODO CLARO) */
+/* ======================== */
+
 .mat-spacer {
   flex: 1 1 auto;
 }
+
+mat-toolbar {
+  background-color: black !important;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+mat-toolbar mat-icon,
+button[mat-icon-button],
+a[mat-button],
+app-language-switcher {
+  color: white !important;
+}
+
+.theme-toggle mat-icon {
+  transition: transform 0.3s ease;
+}
+.theme-toggle mat-icon:hover {
+  transform: scale(1.1);
+}
+
 mat-sidenav {
   width: 200px;
+  background-color: #FF8C00;
   border-right: none;
   padding: 16px 0;
+  border-radius: 0;
 }
+
+.mat-list-item {
+  color: white;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.mat-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.mat-list-item mat-icon {
+  color: white;
+  margin-right: 8px;
+}
+
+.mat-list-item img {
+  margin-right: 8px;
+}
+
 .content {
   height: calc(100svh - 98px);
+  background: #fff;
+  color: #000;
   border-radius: 10px;
   padding: 16px;
   max-width: 1520px;
   margin: 0 auto;
   font-size: 16px;
-  background: #fff;
 }
+
 mat-sidenav-container {
   height: calc(100svh - 65px);
-}
-mat-toolbar {
-  background-color: black !important;
+  background-color: #f5f5f5;
 }
 
-mat-icon {
-  color: white !important; /* Asegura que todos los íconos dentro del toolbar sean blancos */
+/* ======================== */
+/* ESTILOS MODO OSCURO */
+/* ======================== */
+
+body.dark-theme {
+  background-color: #121212;
+  color: #f1f1f1;
 }
 
-a[mat-button] {
-  margin-left: 20px;
-  color: white !important; /* Botón "Project" en blanco */
+body.dark-theme mat-toolbar {
+  background-color: #1f1f1f !important;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
-app-language-switcher {
-  color: white !important; /* Asegura que el selector de idioma también esté en blanco */
+body.dark-theme mat-toolbar mat-icon,
+body.dark-theme button[mat-icon-button],
+body.dark-theme a[mat-button],
+body.dark-theme app-language-switcher {
+  color: white !important;
 }
 
-button[mat-icon-button] {
-  color: white !important; /* Asegura que el ícono del menú (hamburguesa) sea blanco */
-}
-/* Asegurarse de que el texto en el sidenav sea blanco */
-.mat-list-item {
-  color: white; /* Texto blanco para las opciones del sidenav */
+body.dark-theme mat-sidenav {
+  background-color: #1e1e1e !important;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Efecto hover para las opciones */
-.mat-list-item:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Ligera variación al pasar el mouse */
+body.dark-theme .mat-list-item {
+  color: #ffffff;
+}
+body.dark-theme .mat-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-left: 4px solid #ff9800;
+}
+body.dark-theme .mat-list-item mat-icon {
+  color: #ffffff;
+}
+body.dark-theme .mat-list-item img {
+  filter: brightness(90%);
 }
 
-/* Iconos dentro del sidenav */
-.mat-list-item mat-icon {
-  color: white; /* Aseguramos que los iconos sean blancos */
-}
-/* Asegurarse de que el texto en el sidenav sea blanco */
-.mat-list-item {
-  color: white; /* Texto blanco para las opciones del sidenav */
-}
-
-/* Efecto hover para las opciones */
-.mat-list-item:hover {
-  background-color: rgba(255, 255, 255, 0.1); /* Ligera variación al pasar el mouse */
+body.dark-theme .content {
+  background-color: #1c1c1c;
+  color: #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+  margin: 0 auto;
+  font-size: 16px;
+  max-width: 1520px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
-/* Iconos dentro del sidenav */
-.mat-list-item mat-icon {
-  color: white; /* Aseguramos que los iconos sean blancos */
+body.dark-theme mat-sidenav-container {
+  background-color: #121212;
 }
 
-/* Bordes rectos para el sidenav */
-mat-sidenav {
-  border-radius: 0; /* Eliminar bordes curvados */
+body.dark-theme .mat-list-item-active {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-left: 4px solid #ffa000;
 }
-
-

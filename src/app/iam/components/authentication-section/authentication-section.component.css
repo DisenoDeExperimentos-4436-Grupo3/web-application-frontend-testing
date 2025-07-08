@@ -1,9 +1,52 @@
-/* Establece el color del texto a blanco */
-.mat-body {
-  color: white;
+/* =============================== */
+/*     MODO OSCURO - TEXTO        */
+/* =============================== */
+
+body.dark-theme {
+  --primary-text-color: #f1f1f1;
+  --secondary-text-color: #cccccc;
 }
 
-/* También puedes aplicar el color blanco a los botones si lo deseas */
-button.mat-button {
-  color: white;
+body.dark-theme .mat-body,
+body.dark-theme .mat-body-1,
+body.dark-theme .mat-typography {
+  color: var(--primary-text-color) !important;
 }
+
+/* =============================== */
+/*     MODO OSCURO - BOTONES      */
+/* =============================== */
+
+body.dark-theme button.mat-button,
+body.dark-theme button.mat-flat-button,
+body.dark-theme button.mat-stroked-button {
+  color: var(--primary-text-color) !important;
+}
+
+body.dark-theme button.mat-raised-button {
+  background-color: #2a2a2a;
+  color: var(--primary-text-color);
+}
+
+body.dark-theme button.mat-raised-button:hover {
+  background-color: #3a3a3a;
+}
+
+/* =============================== */
+/*     MODO OSCURO - LABELS       */
+/* =============================== */
+
+body.dark-theme .mat-form-field-label,
+body.dark-theme .mat-select-value,
+body.dark-theme .mat-input-element {
+  color: var(--primary-text-color) !important;
+}
+
+/* =============================== */
+/*     MODO OSCURO - ICONOS       */
+/* =============================== */
+
+body.dark-theme mat-icon {
+  color: var(--primary-text-color) !important;
+}
+

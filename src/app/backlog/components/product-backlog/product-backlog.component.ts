@@ -15,12 +15,13 @@ import {FormsModule} from "@angular/forms";
 
 import { TranslateService } from '@ngx-translate/core';
 import {AuthenticationService} from "../../../iam/services/authentication.service";
+import {MatButton} from "@angular/material/button";
 
 
 @Component({
   selector: 'app-product-backlog',
   standalone: true,
-  imports: [MatCardModule, MatInputModule, MatFormFieldModule, CommonModule, MatIcon, FormsModule, TranslateModule],
+  imports: [MatCardModule, MatInputModule, MatFormFieldModule, CommonModule, MatIcon, FormsModule, TranslateModule, MatButton],
   templateUrl: './product-backlog.component.html',
   styleUrl: './product-backlog.component.css'
 })

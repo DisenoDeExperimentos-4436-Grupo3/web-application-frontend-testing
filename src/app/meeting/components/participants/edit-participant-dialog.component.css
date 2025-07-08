@@ -1,16 +1,24 @@
+/* ====== TÍTULO DEL DIÁLOGO ====== */
 h2 {
   margin: 0;
   padding-bottom: 16px;
+  font-size: 24px;
+  font-weight: 600;
 }
 
+/* ====== CONTENIDO DEL DIÁLOGO ====== */
 mat-dialog-content {
-  padding: 16px; /* Espacio dentro del contenido del diálogo */
+  padding: 16px;
+  background-color: white;
+  color: black;
+  border-radius: 8px;
 }
 
+/* ====== LISTA DE MIEMBROS ====== */
 ul {
-  list-style-type: none; /* Quita las viñetas de la lista */
-  padding: 0; /* Quita el padding de la lista */
-  margin: 0; /* Quita el margin de la lista */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .member-item {
@@ -22,68 +30,130 @@ ul {
 }
 
 .member-name {
-  flex-grow: 1; /* Ocupa el espacio restante */
-  font-weight: bold; /* Texto en negrita */
+  flex-grow: 1;
+  font-weight: bold;
 }
 
+/* ====== GRUPO DE BOTONES ====== */
 .button-group {
   display: flex;
-  gap: 10px; /* Espacio entre los botones */
+  gap: 10px;
 }
 
+/* ====== BOTONES GENERALES ====== */
+button {
+  border: none;
+  cursor: pointer;
+}
+
+/* ====== BOTÓN: Remove ====== */
 .remove-button {
-  background-color: #f44336; /* Color de fondo rojo */
-  color: white; /* Texto blanco */
-  border-radius: 8px; /* Bordes redondeados */
-  transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+  background-color: #f44336;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .remove-button:hover {
-  background-color: #d32f2f; /* Color más oscuro al pasar el mouse */
-  transform: scale(1.05); /* Aumento al pasar el mouse */
+  background-color: #d32f2f;
+  transform: scale(1.05);
 }
 
+/* ====== BOTÓN: Add ====== */
 .add-button {
-  background-color: #4caf50; /* Color de fondo verde */
-  color: white; /* Texto blanco */
-  border-radius: 8px; /* Bordes redondeados */
-  transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+  background-color: #4caf50;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
 .add-button:hover {
-  background-color: #388e3c; /* Color más oscuro al pasar el mouse */
-  transform: scale(1.05); /* Aumento al pasar el mouse */
+  background-color: #388e3c;
+  transform: scale(1.05);
 }
 
+/* ====== BOTÓN: Close ====== */
 .close-button {
-  margin-left: auto; /* Empuja el botón de cerrar hacia la derecha */
-  background-color: #f44336; /* Color de fondo rojo */
-  color: white; /* Texto blanco */
-  border-radius: 8px; /* Bordes redondeados */
-  padding: 8px 16px; /* Relleno para hacerlo más grande */
-  font-weight: bold; /* Texto en negrita */
-  transition: background-color 0.3s, transform 0.2s; /* Transición suave */
+  margin-left: auto;
+  background-color: #f44336;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .close-button:hover {
-  background-color: #d32f2f; /* Color más oscuro al pasar el mouse */
+  background-color: #d32f2f;
+  transform: scale(1.05);
 }
 
+/* ====== BOTÓN: Set Host ====== */
 .set-host-button {
-  background-color: #2196F3; /* Color de fondo azul */
-  color: white; /* Texto blanco */
-  border-radius: 8px; /* Bordes redondeados */
-  padding: 8px 16px; /* Relleno para hacerlo más grande */
-  font-weight: bold; /* Texto en negrita */
-  transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves */
+  background-color: #2196F3;
+  color: white;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .set-host-button:hover {
-  background-color: #1976D2; /* Color más oscuro al pasar el mouse */
-  transform: scale(1.05); /* Aumento al pasar el mouse */
+  background-color: #1976D2;
+  transform: scale(1.05);
 }
 
 .set-host-button:disabled {
-  background-color: #B0BEC5; /* Color gris para el botón deshabilitado */
-  color:
+  background-color: #B0BEC5;
+  color: #eeeeee;
+  cursor: not-allowed;
+}
+
+/* ====== MODO OSCURO ====== */
+body.dark-theme mat-dialog-content {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+
+body.dark-theme .member-item {
+  border-bottom: 1px solid #444;
+}
+
+body.dark-theme .remove-button {
+  background-color: #ef5350;
+}
+
+body.dark-theme .remove-button:hover {
+  background-color: #e53935;
+}
+
+body.dark-theme .add-button {
+  background-color: #66bb6a;
+}
+
+body.dark-theme .add-button:hover {
+  background-color: #43a047;
+}
+
+body.dark-theme .set-host-button {
+  background-color: #42a5f5;
+}
+
+body.dark-theme .set-host-button:hover {
+  background-color: #1e88e5;
+}
+
+body.dark-theme .set-host-button:disabled {
+  background-color: #37474f;
+  color: #b0bec5;
+}
+
+body.dark-theme .close-button {
+  background-color: #ef5350;
+}
+
+body.dark-theme .close-button:hover {
+  background-color: #c62828;
 }

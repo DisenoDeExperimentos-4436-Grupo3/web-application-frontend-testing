@@ -1,56 +1,66 @@
-.us-card{
+/* ------------------------------ */
+/* MODO CLARO (por defecto) */
+/* ------------------------------ */
+
+.us-card {
   background-color: white;
   border-radius: 10px;
   margin: 15px;
   padding: 15px;
   width: 20rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-.us-section{
+.us-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.item-header{
+.item-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
-.item-create{
+.item-create {
   width: 5rem;
   height: 2rem;
   background-color: black;
   color: white;
   border-radius: 8px;
   border: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
 
-.item-create:hover{
+.item-create:hover {
   background-color: #212121;
   color: white;
   cursor: pointer;
 }
 
-
-.edit-button{
+.edit-button,
+.delete-button {
   border: none;
-  color: blue;
   background-color: transparent;
+  font-weight: 500;
+  transition: color 0.3s ease;
 }
-.edit-button:hover{
+
+.edit-button {
+  color: #007bff;
+}
+.edit-button:hover {
   color: navy;
   cursor: pointer;
 }
 
-.delete-button{
-  border: none;
-  color: red;
-  background-color: transparent;
+.delete-button {
+  color: #e53935;
 }
-
-.delete-button:hover{
+.delete-button:hover {
   color: brown;
   cursor: pointer;
 }
@@ -63,10 +73,10 @@
   border-radius: 8px;
   width: 90px;
   height: 35px;
-  transition: 0.3s;
+  transition: background-color 0.3s, color 0.3s;
   margin: 1rem;
+  font-weight: 500;
 }
-
 .select-item-button:hover {
   background-color: black;
   color: #fff;
@@ -79,7 +89,7 @@
   padding: 0;
 }
 
-.us-tasks-container{
+.us-tasks-container {
   padding-top: 1rem;
   display: flex;
   flex-wrap: wrap;
@@ -87,21 +97,81 @@
   gap: 20px;
 }
 
-.us-tasks{
+.us-tasks {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   border: 1px solid gray;
   border-radius: 10px;
   padding: 10px;
+  transition: background-color 0.3s ease, border 0.3s ease;
 }
 
-
-.showmore{
+.showmore {
   background: none;
   border: none;
   align-self: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  transition: color 0.3s ease;
 }
-.showmore:hover{
+.showmore:hover {
   cursor: pointer;
+  color: #222;
+}
+
+/* ------------------------------ */
+/* MODO OSCURO */
+/* ------------------------------ */
+
+body.dark-theme .us-card {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-theme .item-create {
+  background-color: #f1f1f1;
+  color: #121212;
+}
+body.dark-theme .item-create:hover {
+  background-color: #d4d4d4;
+  color: #000;
+}
+
+body.dark-theme .edit-button {
+  color: #64b5f6;
+}
+body.dark-theme .edit-button:hover {
+  color: #2196f3;
+}
+
+body.dark-theme .delete-button {
+  color: #ef5350;
+}
+body.dark-theme .delete-button:hover {
+  color: #d32f2f;
+}
+
+body.dark-theme .select-item-button {
+  background-color: transparent;
+  color: #f1f1f1;
+  border: 2px solid #f1f1f1;
+}
+body.dark-theme .select-item-button:hover {
+  background-color: #f1f1f1;
+  color: #121212;
+}
+
+body.dark-theme .us-tasks {
+  border: 1px solid #444;
+  background-color: #2a2a2a;
+}
+
+body.dark-theme .showmore {
+  color: #cccccc;
+}
+body.dark-theme .showmore:hover {
+  color: #ffffff;
 }

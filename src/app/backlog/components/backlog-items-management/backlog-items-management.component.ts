@@ -26,12 +26,13 @@ import {Sprint} from "../../model/sprint.entity"; // Importa el componente para 
 
 import { TranslateService } from '@ngx-translate/core';
 import {AuthenticationService} from "../../../iam/services/authentication.service";
+import {MatButton} from "@angular/material/button";
 
 
 @Component({
   selector: 'app-backlog-items-management',
   standalone: true,
-  imports: [MatCardModule, MatInputModule, MatFormFieldModule, CommonModule, FormsModule, MatIcon, NgFor, TranslateModule],
+  imports: [MatCardModule, MatInputModule, MatFormFieldModule, CommonModule, FormsModule, MatIcon, NgFor, TranslateModule, MatButton],
   templateUrl: './backlog-items-management.component.html',
   styleUrl: './backlog-items-management.component.css'
 })
@@ -51,7 +52,7 @@ export class BacklogItemsManagementComponent {
 
     private authService: AuthenticationService // Inyecta el servicio de autenticación
 
-) {}
+  ) {}
 
   private getAllUserStories(): void {
     this.authService.currentUserId.subscribe((userId: number) => {

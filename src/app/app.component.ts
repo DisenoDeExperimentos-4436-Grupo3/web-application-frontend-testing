@@ -39,6 +39,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'ManageWise';
   isSignedIn: boolean = false;
+  isDarkMode: boolean = false;
 
   @ViewChild(MatSidenav, { static: true }) sidenav!: MatSidenav;
 
@@ -96,5 +97,18 @@ export class AppComponent implements OnInit {
     this.router.navigate(['/sign-in']); // Redirige al usuario a la página de inicio de sesión
   }
 
+  toggleDarkMode(): void {
+    this.isDarkMode = !this.isDarkMode;
 
+    const body = document.body;
+    if (this.isDarkMode) {
+      body.classList.add('dark-theme');
+    } else {
+      body.classList.remove('dark-theme');
+    }
+  }
+
+  isImageUrl(icon: string): boolean {
+    return icon.startsWith('http');
+  }
 }

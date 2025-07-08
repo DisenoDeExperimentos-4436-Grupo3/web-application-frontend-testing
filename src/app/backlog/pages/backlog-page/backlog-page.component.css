@@ -1,8 +1,9 @@
-.backlog-page-container{
+.backlog-page-container {
   padding: 1rem;
 }
 
-.page-header{
+/* Cabecera de página con alineación elegante */
+.page-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,16 +11,36 @@
   padding: 0;
 }
 
-#items-button{
+/* Botón base */
+#items-button {
   width: 5rem;
   height: 2rem;
   border: none;
   background-color: darkorange;
+  color: #000;
+  font-weight: 600;
   border-radius: 8px;
-  color: black;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-#items-button:hover{
+#items-button:hover {
   background-color: orange;
   cursor: pointer;
+  transform: scale(1.05);
+}
+
+#items-button:active {
+  transform: scale(0.97);
+}
+
+/* Adaptación a modo oscuro */
+body.dark-theme #items-button {
+  background-color: #ff9800;
+  color: #121212;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme #items-button:hover {
+  background-color: #ffa726;
 }

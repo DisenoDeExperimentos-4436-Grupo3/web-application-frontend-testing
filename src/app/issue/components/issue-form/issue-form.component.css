@@ -1,32 +1,82 @@
+/* ------------------------------ */
+/* MODO CLARO (por defecto) */
+/* ------------------------------ */
+
 .form-title {
-  text-align: center; /* Centrar el título */
-  font-size: 24px; /* Tamaño de fuente grande */
-  margin: 20px 0; /* Espaciado superior e inferior */
+  text-align: center;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 20px 0;
+  color: #333;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
 .issue-form {
-  max-width: 600px; /* Ancho máximo para el formulario */
-  margin: 0 auto; /* Centrar el formulario horizontalmente */
-  padding: 20px; /* Espaciado interno */
-  border: 1px solid #ccc; /* Borde suave */
-  border-radius: 8px; /* Bordes redondeados */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  background-color: #fff; /* Fondo blanco */
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
 
 mat-form-field {
-  width: 100%; /* Ancho completo para los campos */
-  margin-bottom: 15px; /* Espaciado inferior entre campos */
+  width: 100%;
+  margin-bottom: 18px;
 }
 
 mat-card-actions {
-  display: flex; /* Usar flexbox para el alineado de botones */
-  justify-content: space-between; /* Espacio entre botones */
-  margin-top: 20px; /* Espaciado superior para los botones */
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
 }
+
 .scrollable-container {
-  max-height: 80vh; /* Ajusta según sea necesario */
+  max-height: 80vh;
   overflow-y: auto;
   padding: 16px;
   box-sizing: border-box;
+}
+
+
+/* ------------------------------ */
+/* MODO OSCURO */
+/* ------------------------------ */
+
+body.dark-theme .form-title {
+  color: #f1f1f1;
+}
+
+body.dark-theme .issue-form {
+  background-color: #1f1f1f;
+  border: 1px solid #333;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  color: #e0e0e0;
+}
+
+body.dark-theme mat-form-field {
+  color: #e0e0e0;
+}
+
+/* Campos input en modo oscuro */
+body.dark-theme input,
+body.dark-theme textarea {
+  background-color: transparent;
+  color: #f1f1f1;
+  border-color: #555;
+}
+
+/* Etiquetas y placeholders en campos */
+body.dark-theme ::ng-deep .mat-form-field-label {
+  color: #aaa !important;
+}
+body.dark-theme ::ng-deep .mat-input-element::placeholder {
+  color: #888;
+}
+
+/* Contenedor con scroll si necesita fondo */
+body.dark-theme .scrollable-container {
+  background-color: transparent;
 }

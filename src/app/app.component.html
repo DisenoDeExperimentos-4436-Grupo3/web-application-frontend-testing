@@ -12,8 +12,13 @@
 
   <span class="mat-spacer"></span> <!-- Esto empuja los elementos hacia la derecha -->
 
+  <button mat-icon-button (click)="toggleDarkMode()" class="theme-toggle">
+    <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
+
+
   <app-authentication-section *ngIf="!isSignedIn"/>
-<!--  <app-language-switcher style="color: white;"></app-language-switcher>-->
+  <!--  <app-language-switcher style="color: white;"></app-language-switcher>-->
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -24,7 +29,7 @@
       <!-- Opciones diferentes en el sidenav -->
       <ng-container *ngFor="let option of otherOptions">
         <mat-list-item (click)="sidenav.mode === 'over' && sidenav.toggle()" [routerLink]="option.path">
-          <ng-container *ngIf="option.icon.startsWith('http'); else materialIcon">
+          <ng-container *ngIf="isImageUrl(option.icon); else materialIcon">
             <img [src]="option.icon" alt="{{ option.title }} icon" width="24px" height="24px">
           </ng-container>
 

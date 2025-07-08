@@ -1,32 +1,35 @@
-#product-backlog-card, #sprint-backlog-card, #sprint-card{
-  background-color: lightgray;
+/* ================================ */
+/*          MODO CLARO             */
+/* ================================ */
+
+#product-backlog-card,
+#sprint-backlog-card,
+#sprint-card {
+  background-color: #f2f2f2;
   padding: 1rem;
   max-width: 90%;
   margin: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
-.us-card{
+.us-card {
   background-color: white;
   border-radius: 10px;
   margin: 5px;
   padding: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.us-container{
+.us-container {
   display: flex;
   justify-content: space-between;
 }
 
-/*sprint backlog*/
-.sprint-header{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.sprint-backlog-form{
+/* Sprint Backlog */
+.sprint-header,
+.sprint-backlog-form {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,49 +38,116 @@
   margin: auto;
 }
 
-.sprint-button{
+.sprint-button {
   border-radius: 8px;
   background-color: black;
   border: none;
   color: white;
   height: 2rem;
   width: 6rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
-.sprint-button:hover{
+
+.sprint-button:hover {
   background-color: #212121;
   cursor: pointer;
 }
 
-.add-item{
+.add-item {
   background-color: transparent;
   border: none;
   border-radius: 100%;
   width: 2.4rem;
-  height:2.4rem;
+  height: 2.4rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.3s;
   color: #6e6e6e;
+  transition: all 0.3s ease;
 }
 
-.add-item:hover{
+.add-item:hover {
   cursor: pointer;
   background-color: #ededed;
-  rotate: 90deg;
+  transform: rotate(90deg);
 }
 
-.add-item:active{
-  cursor: pointer;
+.add-item:active {
   background-color: #cccccc;
 }
 
-.delete-button{
+/* Botón eliminar */
+.delete-button {
   border: none;
   color: red;
   background-color: transparent;
+  transition: color 0.3s ease;
 }
-.delete-button:hover{
+
+.delete-button:hover {
   color: brown;
   cursor: pointer;
+}
+
+/* ================================ */
+/*          MODO OSCURO            */
+/* ================================ */
+
+body.dark-theme #product-backlog-card,
+body.dark-theme #sprint-backlog-card,
+body.dark-theme #sprint-card {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-theme .us-card {
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-theme .sprint-button {
+  background-color: #f1f1f1;
+  color: #121212;
+}
+
+body.dark-theme .sprint-button:hover {
+  background-color: #dcdcdc;
+}
+
+body.dark-theme .add-item {
+  color: #bbbbbb;
+}
+
+body.dark-theme .add-item:hover {
+  background-color: #333333;
+}
+
+body.dark-theme .add-item:active {
+  background-color: #444444;
+}
+
+body.dark-theme .delete-button {
+  color: #ef5350;
+}
+
+body.dark-theme .delete-button:hover {
+  color: #c62828;
+}
+
+body.dark-theme h6,
+body.dark-theme span,
+body.dark-theme mat-label,
+body.dark-theme input,
+body.dark-theme .us-container span,
+body.dark-theme .sprint-header h6,
+body.dark-theme .sprint-backlog-form mat-label,
+body.dark-theme .sprint-backlog-form input {
+  color: #f1f1f1 !important;
+}
+
+body.dark-theme input::placeholder {
+  color: #cccccc;
 }

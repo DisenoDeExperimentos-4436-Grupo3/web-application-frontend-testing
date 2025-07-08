@@ -12,18 +12,29 @@
 
 /* Estilo de las tarjetas */
 .issue-card {
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 20px;
   background-color: #ffffff;
+  color: #333;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   position: relative;
 }
 
+body.dark-theme .issue-card {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.05);
+}
+
 .issue-card:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-theme .issue-card:hover {
+  box-shadow: 0 10px 24px rgba(255, 255, 255, 0.08);
 }
 
 /* Fondo degradado animado */
@@ -34,7 +45,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(120deg, rgba(63, 81, 181, 0.3), rgba(244, 67, 54, 0.3));
+  background: linear-gradient(120deg, rgba(63, 81, 181, 0.15), rgba(244, 67, 54, 0.15));
   opacity: 0;
   transition: opacity 0.5s ease;
   z-index: 0;
@@ -59,7 +70,7 @@
   margin-top: 15px;
 }
 
-/* Botones personalizados */
+/* Botones */
 .custom-button,
 .edit-button,
 .delete-button {
@@ -68,7 +79,7 @@
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
@@ -101,14 +112,13 @@
   transform: scale(1.05);
 }
 
-/* Animación de enfoque en el hover */
+/* Hover shadows */
 .issue-card:hover .custom-button,
 .issue-card:hover .edit-button,
 .issue-card:hover .delete-button {
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Efecto de pulsación */
 .custom-button:active,
 .edit-button:active,
 .delete-button:active {

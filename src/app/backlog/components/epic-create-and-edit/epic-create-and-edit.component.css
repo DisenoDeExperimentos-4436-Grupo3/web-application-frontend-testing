@@ -1,19 +1,26 @@
-.form-list{
+/* ------------------------------ */
+/* MODO CLARO (por defecto) */
+/* ------------------------------ */
+
+.form-list {
   padding: 2rem;
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 }
 
-mat-form-field{
+mat-form-field {
   width: 100%;
 }
 
-mat-card-actions{
+mat-card-actions {
   display: flex;
   justify-content: space-around;
+  margin-top: 1rem;
 }
 
-.action-button-cancel{
+/* Botón Cancelar */
+.action-button-cancel {
   border: 1px solid black;
   border-radius: 8px;
   background-color: transparent;
@@ -21,26 +28,56 @@ mat-card-actions{
   height: 3rem;
   width: 7rem;
   font-size: 14px;
-
-  transition: 0.3s;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
-.action-button-cancel:hover{
+
+.action-button-cancel:hover {
   background-color: #ff4a4a;
-  cursor: pointer;
-  border: red;
+  border-color: transparent;
   color: white;
+  cursor: pointer;
 }
 
-.action-button-accept{
-  border-color:transparent;
+/* Botón Aceptar */
+.action-button-accept {
+  border: none;
   border-radius: 8px;
   background-color: #141414;
   color: white;
   height: 3rem;
   width: 7rem;
-  transition: 0.3s;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
 }
-.action-button-accept:hover{
+
+.action-button-accept:hover {
   background-color: black;
   cursor: pointer;
+}
+
+
+/* ------------------------------ */
+/* MODO OSCURO */
+/* ------------------------------ */
+
+body.dark-theme .action-button-cancel {
+  border: 1px solid #f1f1f1;
+  color: #f1f1f1;
+  background-color: transparent;
+}
+
+body.dark-theme .action-button-cancel:hover {
+  background-color: #e53935;
+  border-color: transparent;
+  color: white;
+}
+
+body.dark-theme .action-button-accept {
+  background-color: #f1f1f1;
+  color: #121212;
+}
+
+body.dark-theme .action-button-accept:hover {
+  background-color: #cccccc;
 }

@@ -2,3 +2,53 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body.dark-theme {
+  background-color: #121212;
+  color: #121212;
+}
+
+body.dark-theme .content {
+  background-color: #1c1c1c;
+  color: #e0e0e0;
+}
+
+/* ====================================== */
+/*     TEXTO CLARO EN MODO OSCURO         */
+/* ====================================== */
+body.dark-theme {
+  color: #121212; /* Color por defecto del texto */
+}
+
+body.dark-theme h1 {
+  color: #121212 !important;
+}
+body.dark-theme h2,
+body.dark-theme h3,
+body.dark-theme h4,
+body.dark-theme h5 {
+  color: #f1f1f1 !important;
+}
+body.dark-theme h6 {
+  color: #121212 !important;
+}
+body.dark-theme span {
+  color: #121212 !important;
+}
+body.dark-theme p {
+  color: #121212 !important;
+}
+body.dark-theme mat-label,
+body.dark-theme mat-card-title,
+body.dark-theme mat-card-subtitle,
+body.dark-theme mat-card-content,
+body.dark-theme .us-container span,
+body.dark-theme .sprint-header h6,
+body.dark-theme .sprint-backlog-form mat-label,
+body.dark-theme input,
+body.dark-theme input::placeholder {
+  color: #121212 !important;
+}
+body.dark-theme label {
+  color: #f1f1f1 !important;
+}
