@@ -199,6 +199,33 @@
   "accessPrivateOption": "Privado",
   "addButton": "Añadir",
   "updateButton": "Actualizar",
-  "cancelButton": "Cancelar"
+  "cancelButton": "Cancelar",
+
+  "storypoints": "Puntos de Historia",
+  "epicId": "Id de Epica",
+
+  "editUserStory": "Editar Historia de Usuario",
+  "createUserStory": "Crear Historia de Usuario",
+
+  "editEpic": "Editar Nueva Épica",
+  "createNewEpic": "Crear Nueva Épica",
+
+  "editTask": "Editar Nueva Tarea",
+  "createNewTask": "Crear Nueva Tarea",
+
+  "signIn": "Iniciar sesión",
+  "signUp": "Registrarse",
+  "signOut": "Cerrar sesión",
+  "username": "Nombre de usuario",
+  "password": "Contraseña",
+  "noAccount": "¿No tienes una cuenta? Registrate",
+  "ifAccount": "¿Ya tienes una cuenta? Inicia sesión",
+
+  "streetAddress": "Dirección",
+  "role": "Rol",
+
+  "updateMember": "Actualizar Miembro",
+  "addMember": "Agregar Miembro",
+  "fullName": "Nombre Completo"
 
 }

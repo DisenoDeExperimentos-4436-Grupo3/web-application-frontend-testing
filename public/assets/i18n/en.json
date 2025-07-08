@@ -196,6 +196,33 @@
   "accessPrivateOption": "Private",
   "addButton": "Add",
   "updateButton": "Update",
-  "cancelButton": "Cancel"
+  "cancelButton": "Cancel",
+
+  "storypoints": "Story Points",
+  "epicId": "Epic Id",
+
+  "editUserStory": "Edit User Story",
+  "createUserStory": "Create User Story",
+
+  "editEpic": "Edit New Epic",
+  "createNewEpic": "Create New Epic",
+
+  "editTask": "Edit New Task",
+  "createNewTask": "Create New Task",
+
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "signOut": "Sign Out",
+  "username": "Username",
+  "password": "Password",
+  "noAccount": "Don't have an account? Sign up",
+  "ifAccount": "Already have an account? Sign in",
+
+  "streetAddress": "Street Address",
+  "role": "Role",
+
+  "updateMember": "Update Member",
+  "addMember": "Add Member",
+  "fullName": "Full Name"
 
 }
