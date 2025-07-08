@@ -13,7 +13,7 @@
   <span class="mat-spacer"></span> <!-- Esto empuja los elementos hacia la derecha -->
 
   <app-authentication-section *ngIf="!isSignedIn"/>
-<!--  <app-language-switcher style="color: white;"></app-language-switcher>-->
+  <app-language-switcher style="color: white;"></app-language-switcher>
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -38,7 +38,7 @@
 
       <mat-list-item style="margin-top: auto" (click)="signOut(); sidenav.toggle()" >
         <mat-icon matListItemIcon style="color: black !important;">logout</mat-icon>
-        Sign Out
+        {{ 'signOut' | translate }}
       </mat-list-item>
 
     </mat-nav-list>

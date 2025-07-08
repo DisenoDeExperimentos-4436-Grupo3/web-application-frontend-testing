@@ -1,5 +1,5 @@
 <div class="form-list">
-  <h6 class="form-title">{{ newTask.taskId ? 'Editar Tarea' : 'Agregar nueva Tarea' }}</h6>
+  <h6 class="form-title">{{ newTask.taskId ? ('editTask' | translate) : ('createNewTask' | translate) }}</h6>
   <form (ngSubmit)="onSubmit()" class="task-form">
     <mat-form-field>
       <mat-label>{{ 'title' | translate }}</mat-label>
@@ -27,7 +27,7 @@
 
     <mat-card-actions>
       <button class="action-button-cancel" mat-raised-button color="warn" (click)="onCancel()" type="button">{{ 'cancel' | translate }}</button>
-      <button class="action-button-accept" mat-raised-button color="primary" type="submit">{{ newTask.taskId ? 'Save' : 'Add' }}</button>
+      <button class="action-button-accept" mat-raised-button color="primary" type="submit">{{ newTask.taskId ? ('save' | translate) : ('add' | translate) }}</button>
     </mat-card-actions>
   </form>
 </div>

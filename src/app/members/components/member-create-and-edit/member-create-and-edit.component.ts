@@ -10,6 +10,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import {MatOption, MatSelect} from "@angular/material/select";
 import {AuthenticationService} from "../../../iam/services/authentication.service";
+import { TranslateModule } from "@ngx-translate/core";
+
 
 @Component({
   selector: 'app-member-create-and-edit',
@@ -25,6 +27,7 @@ import {AuthenticationService} from "../../../iam/services/authentication.servic
     CommonModule,
     MatSelect,
     MatOption,
+    TranslateModule
     // Asegúrate de incluir CommonModule
   ]
 })
