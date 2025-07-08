@@ -14,8 +14,9 @@ import { SprintService } from "../../services/sprints.service";
 import {FormsModule} from "@angular/forms";
 
 import { TranslateService } from '@ngx-translate/core';
-import {AuthenticationService} from "../../../iam/services/authentication.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {MatButton} from "@angular/material/button";
+import {AuthenticationService} from "../../../iam/services/authentication.service";
 
 
 @Component({
@@ -37,7 +38,8 @@ export class ProductBacklogComponent {
 
   constructor(private userStoriesService: UserStoriesService,
               private sprintsService: SprintService,
-              private authService: AuthenticationService
+              private authService: AuthenticationService,
+              private snackBar: MatSnackBar
   ) {}
 
   // Cargar todas las historias de usuario
@@ -72,7 +74,11 @@ export class ProductBacklogComponent {
     this.authService.currentUserId.subscribe((userId: number) => {
       this.sprintsService.create(userId, this.newSprint).subscribe(
         (sprint: Sprint) => {
-          console.log('Sprint creado:', sprint);
+          this.snackBar.open('Sprint creado exitosamente', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['snackbar-success'],
+            verticalPosition: 'top'
+          });
           this.sprintBacklog.forEach(userStory => {
             userStory.sprintId = sprint.id;
             const updatedUserStory = {
@@ -95,6 +101,11 @@ export class ProductBacklogComponent {
           this.getAllSprints();
         },
         (error) => {
+          this.snackBar.open('Error al crear el sprint', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['snackbar-error'],
+            verticalPosition: 'top'
+          });
           console.error('Error al crear el sprint:', error);
         }
       );
@@ -109,18 +120,26 @@ export class ProductBacklogComponent {
 
   // Mover historia de sprintBacklog a productBacklog
   onDeleteUserStory(element: UserStory) {
-    // Eliminar del sprintBacklog
     this.sprintBacklog = this.sprintBacklog.filter((userStory: UserStory) => userStory.id !== element.id);
-    // Agregar al productBacklog
     this.productBacklog.push(element);
+
+    this.snackBar.open('Historia removida del sprint', 'Cerrar', {
+      duration: 2500,
+      panelClass: ['snackbar-info'],
+      verticalPosition: 'top'
+    });
   }
 
   // Mover historia de productBacklog a sprintBacklog
   onAddUserStory(element: UserStory) {
-    // Eliminar del productBacklog
     this.productBacklog = this.productBacklog.filter((userStory: UserStory) => userStory.id !== element.id);
-    // Agregar al sprintBacklog
     this.sprintBacklog.push(element);
+
+    this.snackBar.open('Historia añadida al sprint', 'Cerrar', {
+      duration: 2500,
+      panelClass: ['snackbar-info'],
+      verticalPosition: 'top'
+    });
   }
 
 
@@ -133,7 +152,11 @@ export class ProductBacklogComponent {
     };
     this.sprintsService.update(sprint.id, sprint).subscribe(
       (updatedSprint: Sprint) => {
-        console.log('Sprint actualizado:', updatedSprint);
+        this.snackBar.open('Sprint cerrado exitosamente', 'Cerrar', {
+          duration: 3000,
+          panelClass: ['snackbar-success'],
+          verticalPosition: 'top'
+        });
         this.sprintBacklog.forEach(userStory => {
           if (userStory.sprintId === sprint.id) {
             userStory.status = "DONE";
@@ -154,6 +177,11 @@ export class ProductBacklogComponent {
         this.sprintBacklog = this.sprintBacklog.filter(userStory => userStory.sprintId !== sprint.id);
       },
       (error) => {
+        this.snackBar.open('Error al cerrar el sprint', 'Cerrar', {
+          duration: 3000,
+          panelClass: ['snackbar-error'],
+          verticalPosition: 'top'
+        });
         console.error('Error al actualizar el sprint:', error);
       }
     );

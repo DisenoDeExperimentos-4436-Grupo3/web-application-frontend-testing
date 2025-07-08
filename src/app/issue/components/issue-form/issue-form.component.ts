@@ -14,8 +14,11 @@ import { AddHistoryEventComponent } from '../add-history-event/add-history-event
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
 import {AuthenticationService} from "../../../iam/services/authentication.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 import {SprintService} from "../../../backlog/services/sprints.service";
 import {MembersService} from "../../../members/services/members.service";
+
+
 
 
 @Component({
@@ -39,8 +42,10 @@ export class IssueFormComponent {
 
     private sprintsService: SprintService,
     private membersService: MembersService,
+    private snackBar: MatSnackBar,
 
-    private authService: AuthenticationService
+
+  private authService: AuthenticationService
   ) {
     this.newIssue = data ? { ...data } : new Issue();
     this.sprintNames = [];
@@ -110,6 +115,12 @@ export class IssueFormComponent {
           (createdIssue) => {
             this.newIssue = createdIssue;
 
+            this.snackBar.open('Issue creado exitosamente', 'Cerrar', {
+              duration: 3000,
+              panelClass: ['snackbar-success'],
+              verticalPosition: 'top'
+            });
+
             // Añadir eventos de historial usando el issueId
             this.issuesService.addHistoryEventToIssue(this.newIssue.id, creationHistory).subscribe();
             this.issuesService.addHistoryEventToIssue(this.newIssue.id, assignmentHistory).subscribe();
@@ -117,6 +128,11 @@ export class IssueFormComponent {
             this.dialogRef.close(createdIssue);
           },
           (error) => {
+            this.snackBar.open('Error al crear el Issue', 'Cerrar', {
+              duration: 3000,
+              panelClass: ['snackbar-error'],
+              verticalPosition: 'top'
+            });
             console.error('Error al crear el Issue:', error);
           }
         );
@@ -124,9 +140,19 @@ export class IssueFormComponent {
         // Si el issue ya existe, simplemente lo actualizamos
         this.issuesService.update(this.newIssue.id, this.newIssue).subscribe(
           () => {
+            this.snackBar.open('Issue actualizado exitosamente', 'Cerrar', {
+              duration: 3000,
+              panelClass: ['snackbar-success'],
+              verticalPosition: 'top'
+            });
             this.dialogRef.close(this.newIssue);
           },
           (error) => {
+            this.snackBar.open('Error al actualizar el Issue', 'Cerrar', {
+              duration: 3000,
+              panelClass: ['snackbar-error'],
+              verticalPosition: 'top'
+            });
             console.error('Error al actualizar el Issue:', error);
           }
         );

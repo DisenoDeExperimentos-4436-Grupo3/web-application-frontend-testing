@@ -10,11 +10,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { NgFor } from "@angular/common";
 import { MemberCreateAndEditComponent } from "../../components/member-create-and-edit/member-create-and-edit.component";
 import {AuthenticationService} from "../../../iam/services/authentication.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-member-management',
   standalone: true,
-  imports: [MatCardModule, FormsModule, NgFor, TranslateModule],
+  imports: [MatCardModule, FormsModule, NgFor, TranslateModule, MatSnackBarModule],
   templateUrl: './member-management.component.html',
   styleUrls: ['./member-management.component.css']
 })
@@ -22,7 +24,7 @@ export class MemberManagementComponent implements OnInit {
   members: Member[] = [];
 
   constructor(private membersService: MembersService, private dialog: MatDialog,
-              private authService: AuthenticationService) {}
+              private authService: AuthenticationService, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.getAllMembers();
@@ -42,10 +44,20 @@ export class MemberManagementComponent implements OnInit {
     if (confirm('¿Estás seguro de que deseas sacarlo del proyecto?')) {
       this.membersService.delete(member.id).subscribe({
         next: () => {
-          this.members = this.members.filter(m => m.id !== member.id); // Actualizar la lista local después de eliminar
+          this.members = this.members.filter(m => m.id !== member.id);
+          this.snackBar.open('Miembro eliminado exitosamente', 'Cerrar', {
+            duration: 3000,
+            panelClass: 'snackbar-success',
+            verticalPosition: 'top'
+          });
         },
         error: (err: any) => {
           console.error('Error al eliminar el miembro:', err);
+          this.snackBar.open('Error al eliminar el miembro', 'Cerrar', {
+            duration: 3000,
+            panelClass: 'snackbar-error',
+            verticalPosition: 'top'
+          });
         }
       });
     }
@@ -59,8 +71,12 @@ export class MemberManagementComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Agregar el nuevo miembro directamente a la lista local
         this.members.push(result);
+        this.snackBar.open('Miembro agregado exitosamente', 'Cerrar', {
+          duration: 3000,
+          panelClass: 'snackbar-success',
+          verticalPosition: 'top'
+        });
       }
     });
   }
@@ -74,10 +90,14 @@ export class MemberManagementComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Actualizar el miembro editado en la lista local
         const index = this.members.findIndex(m => m.id === result.id);
         if (index !== -1) {
-          this.members[index] = result; // Reemplazamos el miembro editado en la lista local
+          this.members[index] = result;
+          this.snackBar.open('Miembro actualizado exitosamente', 'Cerrar', {
+            duration: 3000,
+            panelClass: 'snackbar-success',
+            verticalPosition: 'top'
+          });
         }
       }
     });

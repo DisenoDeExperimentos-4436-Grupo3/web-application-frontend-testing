@@ -22,6 +22,7 @@ import { MemberService } from '../../services/member.service'; // Servicio para 
 
 import { TranslateService } from '@ngx-translate/core';
 import {AuthenticationService} from "../../../iam/services/authentication.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-meeting-create-and-edit',
@@ -53,8 +54,10 @@ export class MeetingCreateAndEditComponent implements OnInit {
   private meetingService: MeetingService = inject(MeetingService);
   private memberService: MemberService = inject(MemberService); // Servicio inyectado
 
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<MeetingCreateAndEditComponent>,
-              private authService:AuthenticationService) {
+              private authService:AuthenticationService,
+              private snackBar: MatSnackBar) {
     this.meeting = data.meeting;
     this.editMode = data.editMode;
   }
@@ -115,8 +118,22 @@ private createResource(): void {
   this.meeting.members = this.members.map(m => m.id);
 
   this.authService.currentUserId.subscribe((userId: number) => {
-    this.meetingService.create(userId, this.meeting).subscribe(response => {
-      this.meeting = response;
+    this.meetingService.create(userId, this.meeting).subscribe({
+      next: (response) => {
+        this.meeting = response;
+        this.snackBar.open('Reunión creada exitosamente', 'Cerrar', {
+          duration: 3000,
+          panelClass: ['snackbar-success'],
+          verticalPosition: 'top'
+        });
+      },
+      error: () => {
+        this.snackBar.open('Ocurrió un error al guardar la reunión', 'Cerrar', {
+          duration: 3000,
+          panelClass: ['snackbar-error'],
+          verticalPosition: 'top'
+        });
+      }
     });
   });
 }
@@ -124,8 +141,22 @@ private createResource(): void {
   private updateResource(): void {
     let resourceToUpdate: Meeting = this.meeting;
 
-    this.meetingService.update(this.meeting.id, resourceToUpdate).subscribe(response => {
-      this.meeting = response;
+    this.meetingService.update(this.meeting.id, resourceToUpdate).subscribe({
+      next: (response) => {
+        this.meeting = response;
+        this.snackBar.open('Reunión actualizada exitosamente', 'Cerrar', {
+          duration: 3000,
+          panelClass: ['snackbar-success'],
+          verticalPosition: 'top'
+        });
+      },
+      error: () => {
+        this.snackBar.open('Ocurrió un error al actualizar la reunión', 'Cerrar', {
+          duration: 3000,
+          panelClass: ['snackbar-error'],
+          verticalPosition: 'top'
+        });
+      }
     });
   }
 

@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { StatisticsChartComponent } from '../../components/statistics-chart/statistics-chart.component';
 import { TranslateModule } from '@ngx-translate/core';
 import {AuthenticationService} from "../../../iam/services/authentication.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export type ChartOptions = {
   series: ApexAxisChartSeries;

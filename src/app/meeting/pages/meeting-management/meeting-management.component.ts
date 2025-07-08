@@ -15,6 +15,7 @@ import { MeetingInfoComponent } from '../../components/meeting-info/meeting-info
 import { MemberService } from '../../services/member.service';
 import { AuthenticationService } from "../../../iam/services/authentication.service";
 import { ChangeDetectorRef } from '@angular/core';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-meeting-management',
@@ -42,7 +43,8 @@ export class MeetingManagementComponent implements OnInit {
   constructor(
     private meetingService: MeetingService,
     private authService: AuthenticationService,
-    private cdr: ChangeDetectorRef // Inyección del servicio ChangeDetectorRef
+    private cdr: ChangeDetectorRef, // Inyección del servicio ChangeDetectorRef
+    private snackBar: MatSnackBar
   ) {
     this.isEditMode = false;
     this.meetingData = {} as Meeting;
@@ -79,9 +81,23 @@ export class MeetingManagementComponent implements OnInit {
   private createResource(): void {
     this.authService.currentUserId.subscribe((userId: number) => {
       this.meetingService.create(userId, this.meetingData)
-        .subscribe(response => {
-          this.meeting = [...this.meeting, { ...response }]; // Agregar el nuevo recurso a la lista
-          this.cdr.detectChanges(); // Forzar la detección de cambios
+        .subscribe({
+          next: (response) => {
+            this.meeting = [...this.meeting, { ...response }];
+            this.cdr.detectChanges();
+            this.snackBar.open('Reunión creada exitosamente', 'Cerrar', {
+              duration: 3000,
+              panelClass: ['snackbar-success'],
+              verticalPosition: 'top'
+            });
+          },
+          error: () => {
+            this.snackBar.open('Error al crear la reunión', 'Cerrar', {
+              duration: 3000,
+              panelClass: ['snackbar-error'],
+              verticalPosition: 'top'
+            });
+          }
         });
     });
   }
@@ -89,24 +105,47 @@ export class MeetingManagementComponent implements OnInit {
   private updateResource(): void {
     let resourceToUpdate: Meeting = this.meetingData;
     this.meetingService.update(this.meetingData.id, resourceToUpdate)
-      .subscribe(response => {
-        this.meeting = this.meeting.map(resource => {
-          if (resource.id === response.id) {
-            return response;
-          }
-          return resource;
-        });
-        this.cdr.detectChanges(); // Forzar la detección de cambios
+      .subscribe({
+        next: (response) => {
+          this.meeting = this.meeting.map(resource =>
+            resource.id === response.id ? response : resource
+          );
+          this.cdr.detectChanges();
+          this.snackBar.open('Reunión actualizada exitosamente', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['snackbar-success'],
+            verticalPosition: 'top'
+          });
+        },
+        error: () => {
+          this.snackBar.open('Error al actualizar la reunión', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['snackbar-error'],
+            verticalPosition: 'top'
+          });
+        }
       });
   }
 
   private deleteResource(id: number): void {
     this.meetingService.delete(id)
-      .subscribe(() => {
-        this.meeting = this.meeting.filter(meeting => {
-          return meeting.id !== id;
-        });
-        this.cdr.detectChanges(); // Forzar la detección de cambios
+      .subscribe({
+        next: () => {
+          this.meeting = this.meeting.filter(m => m.id !== id);
+          this.cdr.detectChanges();
+          this.snackBar.open('Reunión eliminada exitosamente', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['snackbar-success'],
+            verticalPosition: 'top'
+          });
+        },
+        error: () => {
+          this.snackBar.open('Error al eliminar la reunión', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['snackbar-error'],
+            verticalPosition: 'top'
+          });
+        }
       });
   }
 

@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import {MatOption, MatSelect} from "@angular/material/select";
 import {AuthenticationService} from "../../../iam/services/authentication.service";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-member-create-and-edit',
@@ -37,7 +38,8 @@ export class MemberCreateAndEditComponent implements OnInit {
     private membersService: MembersService,
     private dialogRef: MatDialogRef<MemberCreateAndEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Member,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -56,12 +58,21 @@ export class MemberCreateAndEditComponent implements OnInit {
         this.membersService.update(this.newMember.id, this.newMember).subscribe({
           next: (updatedMember) => {
             this.isLoading = false;
-            this.dialogRef.close(updatedMember); // Retornamos el miembro actualizado
+            this.snackBar.open('Miembro actualizado exitosamente', 'Cerrar', {
+              duration: 3000,
+              panelClass: 'snackbar-success',
+              verticalPosition: 'top'
+            });
+            this.dialogRef.close(updatedMember);
           },
           error: (err: any) => {
             this.isLoading = false;
             this.errorMessage = `Error al actualizar el miembro: ${err.message || 'No se pudo actualizar el miembro'}`;
-            console.error('Error al actualizar el miembro:', err);
+            this.snackBar.open('Error al actualizar el miembro', 'Cerrar', {
+              duration: 3000,
+              panelClass: 'snackbar-error',
+              verticalPosition: 'top'
+            });
           }
         });
       } else {
@@ -69,12 +80,21 @@ export class MemberCreateAndEditComponent implements OnInit {
         this.membersService.create(userId, this.newMember).subscribe({
           next: (createdMember) => {
             this.isLoading = false;
-            this.dialogRef.close(createdMember); // Retornamos el miembro creado
+            this.snackBar.open('Miembro creado exitosamente', 'Cerrar', {
+              duration: 3000,
+              panelClass: 'snackbar-success',
+              verticalPosition: 'top'
+            });
+            this.dialogRef.close(createdMember);
           },
           error: (err: any) => {
             this.isLoading = false;
             this.errorMessage = `Error al crear el miembro: ${err.message || 'No se pudo crear el miembro'}`;
-            console.error('Error al crear el miembro:', err);
+            this.snackBar.open('Error al crear el miembro', 'Cerrar', {
+              duration: 3000,
+              panelClass: 'snackbar-error',
+              verticalPosition: 'top'
+            });
           }
         });
       }
@@ -93,12 +113,21 @@ export class MemberCreateAndEditComponent implements OnInit {
       this.membersService.delete(this.newMember.id).subscribe({
         next: () => {
           this.isLoading = false;
-          this.dialogRef.close({ deleted: true, memberId: this.newMember.id }); // Indicamos que el miembro fue eliminado
+          this.snackBar.open('Miembro eliminado exitosamente', 'Cerrar', {
+            duration: 3000,
+            panelClass: 'snackbar-success',
+            verticalPosition: 'top'
+          });
+          this.dialogRef.close({ deleted: true, memberId: this.newMember.id });
         },
         error: (err: any) => {
           this.isLoading = false;
           this.errorMessage = `Error al eliminar el miembro: ${err.message || 'No se pudo eliminar el miembro'}`;
-          console.error('Error al eliminar el miembro:', err);
+          this.snackBar.open('Error al eliminar el miembro', 'Cerrar', {
+            duration: 3000,
+            panelClass: 'snackbar-error',
+            verticalPosition: 'top'
+          });
         }
       });
     }

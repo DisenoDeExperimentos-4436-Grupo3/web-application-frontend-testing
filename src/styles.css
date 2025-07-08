@@ -52,3 +52,243 @@ body.dark-theme input::placeholder {
 body.dark-theme label {
   color: #f1f1f1 !important;
 }
+
+/* Estilo base para todos los pop-ups */
+.snackbar-success,
+.snackbar-error,
+.snackbar-info {
+  color: #fff;
+  font-weight: 500;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  border-left: 6px solid;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Contenedor principal del snackbar - IMPORTANTE para eliminar fondo negro */
+.mat-snack-bar-container {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  border-radius: 16px !important;
+  overflow: visible !important;
+}
+
+/* Estilo base moderno para todos los pop-ups */
+.snackbar-success,
+.snackbar-error,
+.snackbar-info {
+  color: #ffffff;
+  font-weight: 500;
+  font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  border: none;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  min-height: 64px;
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Efecto glassmorphism sutil */
+.snackbar-success::before,
+.snackbar-error::before,
+.snackbar-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Contenido por encima del overlay */
+.snackbar-success > *,
+.snackbar-error > *,
+.snackbar-info > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Éxito - Verde (colores originales) */
+.snackbar-success {
+  background: linear-gradient(135deg, #43a047, #66bb6a);
+  border-left: 4px solid #2e7d32;
+}
+
+/* Error - Rojo (colores originales) */
+.snackbar-error {
+  background: linear-gradient(135deg, #e53935, #ef5350);
+  border-left: 4px solid #c62828;
+}
+
+/* Informativo - Azul (colores originales) */
+.snackbar-info {
+  background: linear-gradient(135deg, #1e88e5, #42a5f5);
+  border-left: 4px solid #1565c0;
+}
+
+/* Iconos modernos (opcional - si usas iconos) */
+.snackbar-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  padding: 4px;
+}
+
+/* Contenido del mensaje */
+.snackbar-message {
+  flex: 1;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+
+/* Botón de cierre con tus colores originales */
+.mat-snack-bar-action {
+  color: #fff !important;
+  font-weight: 600;
+  margin-left: auto;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  transition: opacity 0.2s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+}
+
+.mat-snack-bar-action:hover {
+  opacity: 0.8;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Animaciones de entrada y salida */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%) scale(0.95);
+  }
+}
+
+/* Aplicar animaciones */
+.snackbar-success,
+.snackbar-error,
+.snackbar-info {
+  animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Resetear estilos predeterminados de Angular Material */
+.mat-simple-snackbar {
+  background: transparent !important;
+  color: inherit !important;
+  font-family: inherit !important;
+}
+
+.mat-simple-snackbar-action {
+  color: inherit !important;
+}
+@media (max-width: 768px) {
+  .snackbar-success,
+  .snackbar-error,
+  .snackbar-info {
+    margin: 0 16px;
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    border-radius: 12px;
+  }
+
+  .mat-snack-bar-action {
+    padding: 6px 10px;
+    font-size: 0.825rem;
+  }
+}
+
+/* Modo oscuro (opcional) */
+@media (prefers-color-scheme: dark) {
+  .snackbar-success,
+  .snackbar-error,
+  .snackbar-info {
+    box-shadow:
+      0 25px 50px -12px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  }
+
+  .snackbar-success::before,
+  .snackbar-error::before,
+  .snackbar-info::before {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Efectos de hover para toda la snackbar */
+.snackbar-success:hover,
+.snackbar-error:hover,
+.snackbar-info:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 32px 64px -12px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+}
+
+/* Indicador de progreso (opcional) */
+.snackbar-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 16px 16px;
+  animation: progressBar 5s linear;
+}
+
+@keyframes progressBar {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}

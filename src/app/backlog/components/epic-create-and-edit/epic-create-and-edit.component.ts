@@ -12,11 +12,14 @@ import {EpicsService} from "../../services/epics.service";
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
 import {AuthenticationService} from "../../../iam/services/authentication.service";
+import {MatButton} from "@angular/material/button";
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-epic-create-and-edit',
   standalone: true,
-  imports: [MatCardModule, FormsModule, NgFor, MatFormFieldModule, MatInputModule, MatSelectModule, TranslateModule],
+  imports: [MatCardModule, FormsModule, NgFor, MatFormFieldModule, MatInputModule, MatSelectModule, TranslateModule, MatButton],
   templateUrl: './epic-create-and-edit.component.html',
   styleUrls: ['./epic-create-and-edit.component.css']
 })
@@ -28,6 +31,7 @@ export class EpicCreateAndEditComponent {
     private dialog: MatDialog,
     private dialogRef: MatDialogRef<EpicCreateAndEditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Epic,
+    private snackBar: MatSnackBar,
     //agregar el autenticador
     private authService: AuthenticationService
   ) {
@@ -38,10 +42,20 @@ export class EpicCreateAndEditComponent {
     this.authService.currentUserId.subscribe((userId: number) => {
       if (this.newEpic.id) {
         this.epicService.update(this.newEpic.id, this.newEpic).subscribe(() => {
+          this.snackBar.open('Epic actualizado exitosamente', 'Cerrar', {
+            duration: 3000,
+            verticalPosition: 'top',
+            panelClass: ['snackbar-success']
+          });
           this.dialogRef.close(true);
         });
       } else {
         this.epicService.create(userId, this.newEpic).subscribe(() => {
+          this.snackBar.open('Epic creado exitosamente', 'Cerrar', {
+            duration: 3000,
+            verticalPosition: 'top',
+            panelClass: ['snackbar-success']
+          });
           this.dialogRef.close(true);
         });
       }

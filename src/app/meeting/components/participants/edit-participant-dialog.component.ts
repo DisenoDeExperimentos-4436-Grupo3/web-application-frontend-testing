@@ -9,6 +9,7 @@ import { MeetingService } from '../../services/meeting.service'; // Asegúrate d
 import { MemberService } from '../../services/member.service'; // Servicio para obtener miembros
 import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 interface EditMemberDialogData { // Cambiado a EditMemberDialogData
   members: Member[]; // Lista de miembros de la reunión
@@ -35,7 +36,9 @@ export class EditMemberDialogComponent { // Cambiado a EditMemberDialogComponent
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: EditMemberDialogData,
     private dialogRef: MatDialogRef<EditMemberDialogComponent>, // Cambiado a EditMemberDialogComponent
-    private meetingService: MeetingService
+    private meetingService: MeetingService,
+    private snackBar: MatSnackBar
+
   ) {
     this.meeting = data.meeting; // Asigna el meeting aquí
   }
@@ -44,7 +47,12 @@ export class EditMemberDialogComponent { // Cambiado a EditMemberDialogComponent
   removeMember(member: Member): void { // Cambiado a removeMember
     const index = this.data.meetingMembers.indexOf(member.id);
     if (index >= 0) {
-      this.data.meetingMembers.splice(index, 1); // Eliminar del array de miembros en la reunión
+      this.data.meetingMembers.splice(index, 1);
+      this.snackBar.open('Miembro eliminado de la reunión', 'Cerrar', {
+        duration: 3000,
+        panelClass: ['snackbar-success'],
+        verticalPosition: 'top'
+      });
     }
   }
 
@@ -59,8 +67,19 @@ export class EditMemberDialogComponent { // Cambiado a EditMemberDialogComponent
 
   addMember(member: Member): void { // Cambiado a addMember
     // Agregar solo si no está en la reunión
-    if (!this.isMemberInMeeting(member)) { // Cambiado a isMemberInMeeting
-      this.data.meetingMembers.push(member.id); // Agregar a la lista de miembros en la reunión
+    if (!this.isMemberInMeeting(member)) {
+      this.data.meetingMembers.push(member.id);
+      this.snackBar.open('Miembro añadido a la reunión', 'Cerrar', {
+        duration: 3000,
+        panelClass: ['snackbar-success'],
+        verticalPosition: 'top'
+      });
+    } else {
+      this.snackBar.open('El miembro ya está en la reunión', 'Cerrar', {
+        duration: 3000,
+        panelClass: ['snackbar-info'],
+        verticalPosition: 'top'
+      });
     }
   }
 
@@ -70,10 +89,21 @@ export class EditMemberDialogComponent { // Cambiado a EditMemberDialogComponent
 
   setHost(member: Member): void { // Cambiado a setHost
     this.meeting.host = member.id; // Asegúrate de que meeting tenga el campo host
+    this.snackBar.open('Host actualizado', 'Cerrar', {
+      duration: 3000,
+      panelClass: ['snackbar-info'],
+      verticalPosition: 'top'
+    });
   }
 
   onSave(): void {
     this.dialogRef.close(this.data.meetingMembers); // Cerrar el diálogo y retornar los miembros
+    this.snackBar.open('Cambios guardados exitosamente', 'Cerrar', {
+      duration: 3000,
+      panelClass: ['snackbar-success'],
+      verticalPosition: 'top'
+    });
+    this.dialogRef.close(this.data.meetingMembers);
   }
 
   onCancel(): void {
